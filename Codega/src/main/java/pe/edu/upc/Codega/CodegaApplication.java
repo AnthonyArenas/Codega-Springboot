@@ -8,6 +8,7 @@ public class CodegaApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CodegaApplication.class, args);
+		System.out.println("Hola mundo");
 	}
 
 }
