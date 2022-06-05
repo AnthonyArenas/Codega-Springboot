@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: frag-head">
+	<meta charset="ISO-8859-1">
+	<title>New Clothing</title>
+</head>
+<body>
+
+<header th:insert="layout/layout :: frag-header"></header>
+<main>
+	
+  <section>
+  
+  	<nav aria-label="breadcrumb" class="margin-20">
+	  <ol class="breadcrumb">
+	    <li class="breadcrumb-item"><a href="#">Home</a></li>
+	    <li class="breadcrumb-item"><a th:href="@{/inventory}">Clothes</a></li>
+	    <li class="breadcrumb-item active" aria-current="page">New</li>
+	  </ol>
+	</nav>
+	
+	<div class="card text-center margin-20">
+	  <div class="card-header">
+	    Clothes
+	  </div>
+	  <div class="card-body" style="text-align: left;">
+	  	
+	  	<form th:action="@{/inventory/savenew}" th:object="${clothing}" method="post" class="row g-3 needs-validation" novalidate>
+		  <div class="col-md-3">
+		    <label for="model" class="form-label">Model</label>
+		    <input type="text" class="form-control" th:field="*{model}" required>
+		    <div class="valid-feedback">
+		      Looks good!
+		    </div>
+		  </div>
+		  <div class="col-md-3">
+		    <label for="price" class="form-label">Price</label>
+		    <input type="text" class="form-control" th:field="*{price}" required>
+		    <div class="valid-feedback">
+		      Looks good!
+		    </div>
+		  </div>
+		  
+		 <div class="col-md-3">
+		    <label for="urlToImage" class="form-label">Url To Image</label>
+		    <input type="text" class="form-control" th:field="*{urlToImage}" required>
+		    <div class="valid-feedback">
+		      Looks good!
+		    </div>
+		  </div>
+		  
+		  <div class="col-md-3">
+		    <label for="description" class="form-label">Description</label>
+		    <input type="text" class="form-control" th:field="*{description}" required>
+		    <div class="valid-feedback">
+		      Looks good!
+		    </div>
+		  </div>
+		  
+		  
+		  <div class="col-md-3">
+		    <label for="list" class="form-label">Career</label>
+		    <select class="form-select" th:field="*{list_clothing}" required>
+		      <option selected disabled value="">Choose...</option>
+		      <option th:each="list : ${listClothing}" th:value="${list.id}" th:text="${list.name}">...</option>
+		    </select>
+		    <div class="invalid-feedback">
+		      Please select a valid state.
+		    </div>
+		  </div>
+		  
+		  <div class="col-12" style="text-align: center;">
+		    <button class="btn btn-success" type="submit"><i class="fas fa-save"></i> Save</button>
+		  </div>
+		</form>
+	  
+	  </div>
+	  <div class="card-footer text-muted">
+
+	  </div>
+	</div>
+  </section>
+
+</main>
+<footer th:replace="layout/layout :: frag-footer"></footer>	
+
+</body>
+</html>
