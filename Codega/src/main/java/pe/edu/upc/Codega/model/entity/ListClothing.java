@@ -75,7 +75,7 @@ public class ListClothing {
 	@Column(name = "description", length = 200, nullable = true)
 	private String description;
 	
-	@Column(name = "urlToImage", length = 200, nullable = true)
+	@Column(name = "urlToImage", length = 500, nullable = true)
 	private String urlToImage;
 	
 	

@@ -13,7 +13,15 @@ import javax.persistence.Table;
 @Table(name = "clothing", indexes = {@Index(columnList = "id", name = "clothing_index_id")})
 public class Clothing {
 
-    @Id
+    public ListClothing getList_clothing() {
+		return list_clothing;
+	}
+
+	public void setList_clothing(ListClothing list_clothing) {
+		this.list_clothing = list_clothing;
+	}
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 	
@@ -23,7 +31,28 @@ public class Clothing {
 	@Column(name = "price", length = 100, nullable = false)
 	private float price;
 
+	@Column(name = "urlToImage", length = 500, nullable = true)
+	private String urlToImage;
 	
+	@Column(name = "description", length = 200, nullable = true)
+	private String description;
+	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getUrlToImage() {
+		return urlToImage;
+	}
+
+	public void setUrlToImage(String urlToImage) {
+		this.urlToImage = urlToImage;
+	}
+
 	@ManyToOne
 	@JoinColumn(name = "list_clothing_id", nullable = true)
 	private ListClothing list_clothing;	// career_idd
