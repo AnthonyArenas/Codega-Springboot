@@ -13,8 +13,9 @@
   
 	<nav aria-label="breadcrumb" class="margin-20">
 	  <ol class="breadcrumb">
-	    <li class="breadcrumb-item"><a href="#">Order</a></li>
-	    <li class="breadcrumb-item active" aria-current="page">Library</li>
+	     <li class="breadcrumb-item"><a th:href="@{/products}">Products</a></li>
+	    <li class="breadcrumb-item"><a th:href="@{/orders}">Orders</a></li>
+	    <li class="breadcrumb-item active" aria-current="page">Home</li>
 	  </ol>
 	</nav>
   
@@ -52,7 +53,7 @@
 	    
 	  </div>
 	  <div class="card-footer text-muted">
-	  	<a class="btn btn-primary" th:href="@{/orders/new}" role="button">Nuevo<i class="fas fa-plus-circle"></i></a>
+	  	<a class="btn btn-primary" th:href="@{/orders/new}" role="button">Nuevo <i class="fas fa-plus-circle"></i></a>
 	  </div>
 	</div>
   </section>
