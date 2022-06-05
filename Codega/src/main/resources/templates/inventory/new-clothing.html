@@ -59,7 +59,7 @@
 		  
 		  
 		  <div class="col-md-3">
-		    <label for="list" class="form-label">Career</label>
+		    <label for="list" class="form-label">ListClothing</label>
 		    <select class="form-select" th:field="*{list_clothing}" required>
 		      <option selected disabled value="">Choose...</option>
 		      <option th:each="list : ${listClothing}" th:value="${list.id}" th:text="${list.name}">...</option>
