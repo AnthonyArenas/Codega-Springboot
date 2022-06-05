@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: frag-head">
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+</head>
+<body>
+
+<header th:insert="layout/layout :: frag-header"></header>
+<main>
+	
+    <nav aria-label="breadcrumb" class="margin-20">
+	  <ol class="breadcrumb">
+	    <li class="breadcrumb-item"><a href="#">Home</a></li>
+	    <li class="breadcrumb-item"><a th:href="@{/inventory}">Clothes</a></li>
+	  </ol>
+	</nav>
+  		<section style="display: flex; justify-content: center">
+  			  <div class="card-footer text-muted">
+	    <a class="btn btn-primary" th:href="@{/inventory/new}" role="button"> <i class="fas fa-plus"></i> New </a>
+	  </div>
+			<div class="row row-cols-1 row-cols-md-4 g-4" style="width: 80%">
+				<div th:each="clothing : ${clothes}">
+					<div class="col">
+						<div class="card">
+							<img
+								th:src=${clothing.urlToImage}
+								class="card-img-top img-responsive" alt="...">
+							<div class="card-body">
+								<h5 class="card-title" th:text="${clothing.model}"></h5>
+								<p class="card-text" th:text="${clothing.description}"></p>
+								<p class="card-text" th:text="${clothing.price}"></p>
+								<a class="btn btn-warning" th:href="@{'/inventory/' + ${clothing.id} + '/edit'}" role="button"> <i class="fas fa-edit"></i> </a>
+		      					<a class="btn btn-danger" th:href="@{'/inventory/' + ${clothing.id} + '/del'}" role="button"> <i class="fas fa-trash-alt"></i> </a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+</main>
+<footer th:replace="layout/layout :: frag-footer"></footer>	
+
+</body>
+</html>
