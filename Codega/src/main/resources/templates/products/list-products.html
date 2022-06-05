@@ -44,8 +44,8 @@
 		      <td th:text="${product.price}"></td>
 		      <td th:text="${product.size}"></td>
 		       <td>
-		       		<a class="btn btn-warning" href="#" role="button"><i class="fas fa-edit"></i></a>
-		       		<a class="btn btn-danger" href="#" role="button"><i class="fas fa-minus-circle"></i></a>
+		       		<a class="btn btn-warning" th:href="@{'/products/' + ${product.id} + '/edit'}" role="button"><i class="fas fa-edit"></i></a>
+		       		<a class="btn btn-danger" th:href="@{'/products/' + ${product.id} + '/del'}" role="button"><i class="fas fa-minus-circle"></i></a>
 			     
 		      </td>
 		   	

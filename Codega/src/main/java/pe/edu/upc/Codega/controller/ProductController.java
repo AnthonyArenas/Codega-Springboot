@@ -1,12 +1,14 @@
 package pe.edu.upc.Codega.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -54,5 +56,61 @@ public class ProductController {
 		return "redirect:/products";
 		
 	}
+	
+	@GetMapping("{id}/edit")
+	public String editProduct(Model model, @PathVariable("id") Integer id) {
+		
+		try {
+			if(productService.existsById(id)) {
+				Optional<Product> optional = productService.findById(id);
+				model.addAttribute("product", optional.get());
+			}
+			else {
+				return "redirect:/products";
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "products/edit-product";
+	}
+	
+	@PostMapping("{id}/update")
+	public String updateProduct(Model model, @ModelAttribute("product") Product product ,@PathVariable("id") Integer id) {
+		try {
+			if(productService.existsById(id)) {
+				productService.update(product);
+			}
+			else {
+				return "redirect:/products";
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "redirect:/products";
+	}
+	
+	@GetMapping("{id}/del")
+	public String deleteProduct(Model model, @PathVariable("id") Integer id ) {
+		try {
+			if(productService.existsById(id)) {
+				productService.deleteById(id);
+			}
+			else {
+				return "redirect:/products";
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "redirect:/products";
+	}
+		
+	
+	
+	
 	
 }
