@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/Base2 :: frag-head">
+	<meta charset="ISO-8859-1">
+	<title>Nuevo Cliente</title>
+</head>
+<body>
+
+<header th:insert="layout/Base2 :: frag-header"></header>
+<main>
+	
+  <section>
+  
+  	<nav aria-label="breadcrumb" class="margin-20">
+	  <ol class="breadcrumb">
+	    <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+	    <li class="breadcrumb-item"><a th:href="@{/clients}">Clientes</a></li>
+	    <li class="breadcrumb-item active" aria-current="page">Nuevo</li>
+	  </ol>
+	</nav>
+	
+	<div class="card text-center margin-20">
+	  <div class="card-header">
+	    Clientes
+	  </div>
+	  <div class="card-body" style="text-align: left;">
+	  	
+	  	<form th:action="@{/clients/save}" th:object="${client}" method="post" class="row g-3 needs-validation" novalidate>
+		  <div class="col-md-1">
+		    <label for="id" class="form-label">id</label>
+		    <input type="number" class="form-control" th:field="*{id}" required>
+		    <div class="valid-feedback">
+		      Looks good!
+		    </div>
+		  </div>  
+		  <div class="col-md-3">
+		    <label for="lastName" class="form-label">Apellido</label>
+		    <input type="text" class="form-control" th:field="*{lastname}" required>
+		    <div class="valid-feedback">
+		      Looks good!
+		    </div>
+		  </div>
+		  <div class="col-md-2">
+		    <label for="firstName" class="form-label">Nombre</label>
+		    <input type="text" class="form-control" th:field="*{firstname}" required>
+		    <div class="valid-feedback">
+		      Looks good!
+		    </div>
+		  </div>
+		  
+		  <div class="col-md-2">
+		    <label for="cellphone" class="form-label">Celular</label>
+		    <input type="text" class="form-control" th:field="*{cellphone}" required>
+		    <div class="valid-feedback">
+		      Looks good!
+		    </div>
+		  </div>
+		  
+		  <div class="col-md-2">
+		    <label for="direction" class="form-label">Direccion</label>
+		    <input type="text" class="form-control" th:field="*{direction}" required>
+		    <div class="valid-feedback">
+		      Looks good!
+		    </div>
+		  </div>
+		  
+		  <div class="col-md-2">
+		    <label for="password" class="form-label">Contrasena</label>
+		    <input type="text" class="form-control" th:field="*{password}" required>
+		    <div class="valid-feedback">
+		      Looks good!
+		    </div>
+		  </div>
+		  
+		  <div class="col-12" style="text-align: center;">
+		    <button class="btn btn-success" type="submit"><i class="fas fa-save"></i> Salvar</button>
+		  </div>
+		</form>
+	  
+	  </div>
+	  <div class="card-footer text-muted">
+
+	  </div>
+	</div>
+  </section>
+
+</main>
+<footer th:replace="layout/Base2 :: frag-footer"></footer>	
+
+</body>
+</html>

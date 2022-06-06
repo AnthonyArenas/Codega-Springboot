@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/Base2 :: frag-head">
+	<meta charset="ISO-8859-1">
+	<title>Lista de Clientes</title>
+</head>
+<body>
+
+<header th:insert="layout/Base2 :: frag-header"></header>
+<main>
+	
+  <section>
+	<div class="card text-center">
+	  <div class="card-header">
+	    Lista de Clientes
+	  </div>
+	  <div class="card-body">
+	    
+	    <table class="table table-striped">
+		  <thead>
+		    <tr>
+		      <th scope="col">Id</th>
+		      <th scope="col">Apellido</th>
+		      <th scope="col">Nombre</th>
+		      <th scope="col">Celular</th>
+		      <th scope="col">Direccion</th>
+		      <th scope="col">Acciones</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr th:each="client : ${clients}">
+		      <th scope="row" th:text="${client.id}"></th>
+		      <td th:text="${client.lastname}"></td>
+		      <td th:text="${client.firstname}"></td>
+		      <td th:text="${client.cellphone}"></td>
+		      <td th:text="${client.direction}"></td>
+		      <td>
+		      	<a class="btn btn-primary" th:href="@{'/clients/goupdate/'+${client.id}}" role="button"> <i class="fas fa-user-edit"></i> </a>
+		      	<a class="btn btn-danger" th:href="@{/clients/delete?id=}+${client.id}" role="button"> <i class="fas fa-user-times"></i> </a>
+		      </td>
+		    </tr>
+		  </tbody>
+		</table>
+	    
+	  </div>
+	  	  <div class="card-footer text-muted">
+	    <a class="btn btn-primary" th:href="@{/clients/new}" role="button"> <i class="fas fa-plus"></i> Nuevo Cliente </a>
+	  </div> 
+	</div>
+  </section>
+
+</main>
+<footer th:replace="layout/Base2 :: frag-footer"></footer>	
+
+</body>
+</html>
