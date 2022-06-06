@@ -1,7 +1,7 @@
 package pe.edu.upc.Codega.business.crud.impl;
 
 import java.io.Serializable;
-
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -33,6 +33,11 @@ public class CategoriesServiceImpl implements CategoriesService, Serializable {
 	@Override
 	public Categories update(Categories entity) throws Exception {
 		return categoriesRepository.save(entity);
+	}
+	
+	@Override
+	public List<Categories> findByVendorId(int id) {
+		return categoriesRepository.findByVendorId(id);
 	}
 
 }
