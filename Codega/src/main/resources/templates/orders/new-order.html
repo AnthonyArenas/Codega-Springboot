@@ -27,7 +27,7 @@
 		<form th:action="@{/orders/savenew}" th:object="${order}" method="post" class="row g-3 needs-validation" novalidate>
 		
 		<div class="col-md-3">
-		    <label for="pickUpWay" class="form-label">Pick Up Way</label>
+		    <label for="pickUpWay" class="form-label">Pick up way</label>
 		    <input type="text" class="form-control" th:field="*{pickUpWay}" required>
 		    <div class="valid-feedback">
 		      Looks good!
@@ -35,7 +35,7 @@
 		  </div>
 			
 		  <div class="col-md-3">
-		    <label for="orderDate" class="form-label">Order Date</label>
+		    <label for="orderDate" class="form-label">Order date</label>
 		    <input type="text" class="form-control" th:field="*{orderDate}" required>
 		    <div class="valid-feedback">
 		      Looks good!
