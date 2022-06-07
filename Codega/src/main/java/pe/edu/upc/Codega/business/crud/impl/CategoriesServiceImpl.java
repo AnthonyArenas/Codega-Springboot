@@ -34,10 +34,5 @@ public class CategoriesServiceImpl implements CategoriesService, Serializable {
 	public Categories update(Categories entity) throws Exception {
 		return categoriesRepository.save(entity);
 	}
-	
-	@Override
-	public List<Categories> findByVendorId(int id) {
-		return categoriesRepository.findByVendorId(id);
-	}
 
 }
