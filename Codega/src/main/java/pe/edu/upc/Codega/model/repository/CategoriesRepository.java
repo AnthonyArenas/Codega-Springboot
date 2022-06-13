@@ -10,5 +10,4 @@ import pe.edu.upc.Codega.model.entity.Categories;
 
 @Repository
 public interface CategoriesRepository extends JpaRepository<Categories, Integer> {
-	List<Categories> findByVendorId(int id);
 }

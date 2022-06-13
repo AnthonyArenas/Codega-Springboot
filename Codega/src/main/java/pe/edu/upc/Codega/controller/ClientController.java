@@ -1,5 +1,6 @@
 package pe.edu.upc.Codega.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -57,11 +58,26 @@ public class ClientController {
 	public String saveClient(Model model, @ModelAttribute("client") Client client) {
 		try {
 			Client clientSaved = clientService.create(client);
+			return "redirect:/clients/godetail/"+clientSaved.getId();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "redirect:/clients";
+		}
+	}
+	
+	@GetMapping("/godetail/{id}")
+	public String detailClient(@PathVariable int id, Model model) {
+		try {
+			Client client = clientService.findById(id).get();
+			model.addAttribute("client", client);
+			List<Label> labels = labelService.findByClientId(id);
+			model.addAttribute("labels", labels);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "redirect:/clients";
+		return "clients/detail-client";
 	}
 	
 	@GetMapping("/goupdate/{id}")
@@ -91,5 +107,35 @@ public class ClientController {
 		}
 		return "redirect:/clients";
 	}
-
+	
+	// Metodos del Labels
+	
+	@GetMapping("/labels/new/{idclient}")
+	public String newLabel(@PathVariable int idclient, Model model) {
+		try {
+			List<Client> clients = new ArrayList<Client>();
+			Client client = clientService.findById(idclient).get();
+			clients.add(client);
+			model.addAttribute("clients", clients);
+			Label label = new Label();
+			label.setClient(client);
+			model.addAttribute("label", label);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "clients/new-label";
+	}
+	
+	@PostMapping("/labels/save")
+	public String saveLabel(Model model, @ModelAttribute("label") Label label) {
+		try {
+			Label labelSaved = labelService.create(label);
+			return "redirect:/clients/godetail/"+labelSaved.getClient().getId();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "redirect:/clients";
+		}
+	}
 }
