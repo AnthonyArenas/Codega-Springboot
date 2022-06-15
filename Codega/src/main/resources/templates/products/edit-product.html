@@ -13,22 +13,21 @@
   
 	<nav aria-label="breadcrumb" class="margin-20">
 	  <ol class="breadcrumb">
-	    <li class="breadcrumb-item"><a href="#">Home</a></li>
 	    <li class="breadcrumb-item"><a th:href="@{/products}">Products</a></li>
-	    <li class="breadcrumb-item active" aria-current="page">Edit</li>
+	    <li class="breadcrumb-item active" aria-current="page">Editar</li>
 	  </ol>
 	</nav>
   
 	<div class="card text-center margin-20">
 	  <div class="card-header">
-	    Edit Products
+	    Editar Products
 	  </div>
 	  <div class="card-body" style="text-align: left">
 	  
 		<form th:action="@{'/products/' + ${product.id} + '/update'}" th:object="${product}" method="post" class="row g-3 needs-validation" novalidate>
 		
 		<div class="col-md-3">
-		    <label for="name" class="form-label">name</label>
+		    <label for="name" class="form-label">Name</label>
 		    <input type="text" class="form-control" th:field="*{name}" required>
 		    <div class="valid-feedback">
 		      Looks good!
@@ -36,7 +35,7 @@
 		  </div>
 			
 		  <div class="col-md-3">
-		    <label for="description" class="form-label">description</label>
+		    <label for="description" class="form-label">Description</label>
 		    <input type="text" class="form-control" th:field="*{description}" required>
 		    <div class="valid-feedback">
 		      Looks good!
@@ -44,7 +43,7 @@
 		  </div>
 		  
 		  <div class="col-md-3">
-		    <label for="brand" class="form-label">brand</label>
+		    <label for="brand" class="form-label">Brand</label>
 		    <input type="text" class="form-control" th:field="*{brand}" required>
 		    <div class="valid-feedback">
 		      Looks good!
@@ -60,7 +59,7 @@
 		  </div>
 		  
 		  <div class="col-md-3">
-		    <label for="size" class="form-label">size</label>
+		    <label for="size" class="form-label">Size</label>
 		    <input type="text" class="form-control" th:field="*{size}" required>
 		    <div class="valid-feedback">
 		      Looks good!

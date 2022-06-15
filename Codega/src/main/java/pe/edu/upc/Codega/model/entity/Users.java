@@ -1,6 +1,5 @@
 package pe.edu.upc.Codega.model.entity;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
