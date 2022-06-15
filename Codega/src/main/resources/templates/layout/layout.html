@@ -1,16 +1,27 @@
 <!doctype html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="frag-head">
+<<<<<<< HEAD
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" >
 	<link th:href="@{/css/fontawesome.min.css}" rel="stylesheet" >
 	<link th:href="@{/css/solid.min.css}" rel="stylesheet" >
 	<title>Codega</title>
+=======
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" >
+  <link th:href="@{/css/fontawesome.min.css}" rel="stylesheet" >
+  <link th:href="@{/css/solid.min.css}" rel="stylesheet" > 
+  <link th:href="@{/css/style.css}" rel="stylesheet" >
+  <title>Codega</title>
+>>>>>>> develop
 </head>
 <body>
 
 <header th:fragment="frag-header">	<!-- Crear un fragmento -->
+<<<<<<< HEAD
 	<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #7952b3;" >
 		<div class="container-fluid">
 			<a class="navbar-brand" href="#"><i class="fas fa-chalkboard-teacher"></i> Codega</a>
@@ -34,16 +45,51 @@
 				</form>
 			</div>
 		</div>
+=======
+	<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #212121;" >
+	  <div class="container-fluid">
+	    <a class="navbar-brand" href="#"><i class="fa-solid fa-shop"></i> Codega</a>
+	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	      <span class="navbar-toggler-icon"></span>
+	    </button>
+	    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+	        <li class="nav-item">
+	          <a class="nav-link active" aria-current="page" th:href="@{/inventory}"> Clothes</a>
+	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link" aria-current="page" th:href="@{/listClothing}"> ListClothing</a>
+	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link" aria-current="page" href="#"> Categories</a>
+	        </li>
+
+	      </ul>
+	      <form class="d-flex">
+	        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+	        <button class="btn btn-warning" type="submit"><i class="fas fa-search"></i></button>
+	      </form>
+	    </div>
+	  </div>
+>>>>>>> develop
 	</nav>
 </header>
 <main>
 	<section>
+<<<<<<< HEAD
 	</section>
 </main>
 <footer th:fragment="frag-footer">
 	<p>Codega</p>
+=======
+	
+	</section>
+</main>
+<footer th:fragment="frag-footer">
+	
+>>>>>>> develop
 	<script src="@{/js/bootstrap.bundle.min.js}" ></script>
-</footer>
-
+</footer>	
+  
 </body>
 </html>
