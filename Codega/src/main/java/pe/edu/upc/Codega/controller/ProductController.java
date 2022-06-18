@@ -35,6 +35,24 @@ public class ProductController {
 		return "products/list-products";
 	}
 	
+	@GetMapping("{id}/view")
+	public String viewProduct(Model model, @PathVariable("id") Integer id) {
+		try {
+			if(productService.existsById(id)) {
+				Optional<Product> optional = productService.findById(id);
+				model.addAttribute("product", optional.get());
+			}
+			else {
+				return "redirect:/products";
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "products/view-products";
+	}
+	
 	@GetMapping("new")
 	public String newProduct(Model model) {
 		

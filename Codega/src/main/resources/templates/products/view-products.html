@@ -26,19 +26,22 @@
 	  <div class="card-body">
 	  
 	  <div class="row">
-		  <div th:each="product : ${products}" class="col-sm-3 margin-b-10">
+		  <div class="col-sm-3 margin-b-10">
 		    <div class="card">
 		      <div class="card-body">
 		      	<img th:src = ${product.image} class="card-img-top img-responsive" alt="...">
 		        
 		        <p class="card-text"> 
 		        	Categoria: <span th:text="${product.categorie.description}"></span>
+		        	Marca: <span th:text="${product.brand}"></span> 
+		        	Descripcion: <span th:text="${product.description}"></span> 
+		        	Name: <span th:text="${product.name}"></span> 
+		        	Price: <span th:text="${product.price}"></span> 
+		        	Size: <span th:text="${product.size}"></span> 
 		        	 
-			 
 		        </p>
-		        <a class="btn btn-warning" th:href="@{'/products/' + ${product.id} + '/view'}" role="button"><i class="fas fa-eye"></i> Ver</a>
-		        <a class="btn btn-warning" th:href="@{'/products/' + ${product.id} + '/edit'}" role="button"><i class="fas fa-edit"></i></a>
-		       	<a class="btn btn-danger" th:href="@{'/products/' + ${product.id} + '/del'}" role="button"><i class="fas fa-minus-circle"></i></a>
+		        <a class="btn btn-success" th:href="@{'/orders/' + ${product.id} + '/new'}" role="button"><i class="fas fa-shopping-cart"></i> Comprar</a>
+		       	<a class="btn btn-danger" th:href="@{/products}" role="button"><i class="fas fa-minus-circle"></i> Regresar</a>
 		      </div>
 		    </div>
 		  </div>
@@ -48,7 +51,7 @@
     
 	  </div>
 	  <div class="card-footer text-muted">
-	  	<a class="btn btn-primary" th:href="@{/products/new}" role="button">Nuevo <i class="fas fa-plus-circle"></i></a>
+
 	  </div>
 	</div>
   </section>
