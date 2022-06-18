@@ -1,12 +1,12 @@
 server:
-  port: 8080
+  port: 8180
 
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/university
+    url: jdbc:postgresql://localhost:5432/ropa
     username: postgres
-    password: upc2022
+    password: Brawl123!
   jpa:
     database: postgresql
     hibernate:

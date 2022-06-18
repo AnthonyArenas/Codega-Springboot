@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import pe.edu.upc.Codega.business.crud.OrderService;
+import pe.edu.upc.Codega.business.crud.ProductService;
 import pe.edu.upc.Codega.model.entity.Order;
 
 @Controller
@@ -23,6 +24,9 @@ public class OrderController {
 	
 	@Autowired
 	public OrderService orderService;
+	
+	@Autowired
+	public ProductService productService;
 	
 	@GetMapping
 	public String listOrders(Model model) {
@@ -41,6 +45,21 @@ public class OrderController {
 	public String newOrder(Model model) {
 		Order order = new Order();
 		model.addAttribute("order", order);
+		return "orders/new-order";
+	}
+	
+	@GetMapping("{id}/new")
+	public String addProductoToOrder(Model model, @PathVariable("id") Integer id) {
+		
+		try {
+			if(productService.existsById(id)) {
+				
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return "orders/new-order";
 	}
 	

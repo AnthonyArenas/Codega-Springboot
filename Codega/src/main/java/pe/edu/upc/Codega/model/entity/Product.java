@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Index;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -30,6 +32,13 @@ public class Product {
 	
 	@Column(name = "size", length = 20, nullable = false)
 	private String size;
+	
+	@Column(name = "image", length = 200, nullable = false)
+	private String image;
+	
+	@ManyToOne
+	@JoinColumn(name = "categorie_id")
+	private Categories categorie;
 
 	
 	public Integer getId() {
@@ -79,6 +88,24 @@ public class Product {
 	public void setSize(String size) {
 		this.size = size;
 	}
+
+	public Categories getCategorie() {
+		return categorie;
+	}
+
+	public void setCategorie(Categories categorie) {
+		this.categorie = categorie;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+	
+	
 
 
 	
