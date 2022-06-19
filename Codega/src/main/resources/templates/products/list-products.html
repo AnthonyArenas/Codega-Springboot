@@ -1,60 +1,80 @@
 <!doctype html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="layout/layout :: frag-head">
-	<meta charset="ISO-8859-1">
-	<title>Products</title>
+<meta charset="ISO-8859-1">
+<title>Products</title>
 </head>
 <body>
 
-<header th:insert="layout/layout :: frag-header"></header>
-<main>
-	
-  <section>
-  
-	<nav aria-label="breadcrumb" class="margin-20">
-	  <ol class="breadcrumb">
-	    <li class="breadcrumb-item"><a th:href="@{/products}">Products</a></li>
-	    <li class="breadcrumb-item"><a th:href="@{/orders}">Orders</a></li>
-	    <li class="breadcrumb-item active" aria-current="page">Home</li>
-	  </ol>
-	</nav>
-  
-	<div class="card text-center margin-20">
-	  <div class="card-header">
-	    Products
-	  </div>
-	  <div class="card-body">
-	  
-	  <div class="row">
-		  <div th:each="product : ${products}" class="col-sm-3 margin-b-10">
-		    <div class="card">
-		      <div class="card-body">
-		      	<img th:src = ${product.image} class="card-img-top img-responsive" alt="...">
-		        
-		        <p class="card-text"> 
-		        	Categoria: <span th:text="${product.categorie.description}"></span>
-		        	 
-			 
-		        </p>
-		        <a class="btn btn-warning" th:href="@{'/products/' + ${product.id} + '/view'}" role="button"><i class="fas fa-eye"></i> Ver</a>
-		        <a class="btn btn-warning" th:href="@{'/products/' + ${product.id} + '/edit'}" role="button"><i class="fas fa-edit"></i></a>
-		       	<a class="btn btn-danger" th:href="@{'/products/' + ${product.id} + '/del'}" role="button"><i class="fas fa-minus-circle"></i></a>
-		      </div>
-		    </div>
-		  </div>
-	    
-	  </div>
-	 
-    
-	  </div>
-	  <div class="card-footer text-muted">
-	  	<a class="btn btn-primary" th:href="@{/products/new}" role="button">Nuevo <i class="fas fa-plus-circle"></i></a>
-	  </div>
-	</div>
-  </section>
+	<header th:insert="layout/layout :: frag-header"></header>
+	<main>
 
-</main>
-<footer th:replace="layout/layout :: frag-footer"></footer>	
+		<section>
+
+			<nav aria-label="breadcrumb" class="margin-20">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a th:href="@{/products}">Products</a></li>
+					<li class="breadcrumb-item"><a th:href="@{/orders}">Orders</a></li>
+					<li class="breadcrumb-item active" aria-current="page">Home</li>
+				</ol>
+			</nav>
+
+			<div class="card text-center margin-20">
+				<div class="card-header">Products</div>
+				<div class="card-body">
+					<div>
+						<form th:action="@{/products/search}" th:object="${productSearch}"
+							method="post" class="row g-3 needs-validation" novalidate>
+							<div class="col-md-3">
+								<label for="brand" class="form-label">Brand</label> <input
+									type="text" class="form-control" th:field="*{brand}" required>
+								<div class="valid-feedback">Looks good!</div>
+							</div>
+							<div class="col-12" style="text-align: Center">
+								<button class="btn btn-success" type="submit">Buscar</button>
+							</div>
+						</form>
+					</div>
+					<div class="row">
+						<div th:each="product : ${products}" class="col-sm-3 margin-b-10">
+							<div class="card">
+								<div class="card-body">
+									<img th:src="${product.image}?${product.image}:'Error'"
+										class="card-img-top img-responsive" alt="...">
+
+									<p class="card-text">
+										Categoria: <span
+											th:text="${product.categorie}?${product.categorie.description}:'Sin Categoria'"></span>
+
+
+									</p>
+									<a class="btn btn-warning"
+										th:href="@{'/products/' + ${product.id} + '/view'}"
+										role="button"><i class="fas fa-eye"></i> Ver</a> <a
+										class="btn btn-warning"
+										th:href="@{'/products/' + ${product.id} + '/edit'}"
+										role="button"><i class="fas fa-edit"></i></a> <a
+										class="btn btn-danger"
+										th:href="@{'/products/' + ${product.id} + '/del'}"
+										role="button"><i class="fas fa-minus-circle"></i></a>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+
+				</div>
+				<div class="card-footer text-muted">
+					<a class="btn btn-primary" th:href="@{/products/new}" role="button">Nuevo
+						<i class="fas fa-plus-circle"></i>
+					</a>
+				</div>
+			</div>
+		</section>
+
+	</main>
+	<footer th:replace="layout/layout :: frag-footer"></footer>
 
 </body>
 </html>
