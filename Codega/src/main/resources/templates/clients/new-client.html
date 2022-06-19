@@ -2,7 +2,8 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="layout/Base2 :: frag-head">
 	<meta charset="ISO-8859-1">
-	<title>Nuevo Cliente</title>
+	<title th:if="${client.id}==0">Nuevo Cliente</title>
+	<title th:unless="${client.id}==0">Editar Cliente</title>
 </head>
 <body>
 
@@ -15,7 +16,9 @@
 	  <ol class="breadcrumb">
 	    <li class="breadcrumb-item"><a href="#">Inicio</a></li>
 	    <li class="breadcrumb-item"><a th:href="@{/clients}">Clientes</a></li>
-	    <li class="breadcrumb-item active" aria-current="page">Nuevo</li>
+	    <li th:if="${client.id}==0" class="breadcrumb-item active" aria-current="page">Nuevo</li>
+	    <li th:unless="${client.id}==0" class="breadcrumb-item"><a th:href="@{'/clients/godetail/'+${client.id}}">Datos Personales</a></li>
+	    <li th:unless="${client.id}==0" class="breadcrumb-item active" aria-current="page">Editar Datos</li>
 	  </ol>
 	</nav>
 	
@@ -74,6 +77,8 @@
 		  
 		  <div class="col-12" style="text-align: center;">
 		    <button class="btn btn-success" type="submit"><i class="fas fa-save"></i> Salvar</button>
+		    <a th:if="${client.id}==0" class="btn btn-danger" th:href="@{/clients}" role="button">Cancelar</a>
+		    <a th:unless="${client.id}==0" class="btn btn-danger" th:href="@{'/clients/godetail/'+${client.id}}" role="button">Cancelar</a>
 		  </div>
 		</form>
 	  

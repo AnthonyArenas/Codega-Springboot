@@ -10,4 +10,5 @@ import pe.edu.upc.Codega.model.entity.Product;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> {
 	List<Product> findByName(String name) throws Exception;
+	List<Product> findByBrandContaining(String brand) throws Exception;
 }
