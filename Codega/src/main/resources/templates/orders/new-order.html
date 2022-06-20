@@ -13,7 +13,7 @@
   
 	<nav aria-label="breadcrumb" class="margin-20">
 	  <ol class="breadcrumb">
-	    <li class="breadcrumb-item"><a th:href="@{/orders}">Orders</a></li>
+	    <li class="breadcrumb-item"><a th:href="@{/products}">Products</a></li>
 	    <li class="breadcrumb-item active" aria-current="page">Nuevo</li>
 	  </ol>
 	</nav>
@@ -26,13 +26,15 @@
 	  
 		<form th:action="@{'/orders/savenew'}" th:object="${order}" method="post" class="row g-3 needs-validation" novalidate>
 		
+		
 		<div class="col-md-3">
 		    <label for="pickUpWay" class="form-label">Pick up way</label>
 		    <input type="text" class="form-control" th:field="*{pickUpWay}" required>
 		    <div class="valid-feedback">
 		      Looks good!
 		    </div>
-		  </div>
+		</div>
+		
 			
 		  <div class="col-md-3">
 		    <label for="orderDate" class="form-label">Order date</label>
@@ -42,7 +44,7 @@
 		    </div>
 		  </div>
 		  
-		  
+		    
 		  <div class="col-md-2">
 		    <label for="quantity" class="form-label">Quantity</label>
 		    <input type="number" class="form-control" th:field="*{quantity}" required>
@@ -55,7 +57,7 @@
 		  	
 		  <div class="col-12" style="text-align: Center">
 		    <button class="btn btn-success" type="submit">Orderar</button>
-		    <a class="btn btn-danger" href="#" role="button">Cancelar</a>
+		    <a class="btn btn-danger" th:href="@{/products}" role="button">Cancelar</a>
 		  </div>
 		</form>
 	  

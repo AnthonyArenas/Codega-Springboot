@@ -1,6 +1,6 @@
 package pe.edu.upc.Codega.controller;
 
-import java.util.List;
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,33 +34,12 @@ public class OrderController {
 	@Autowired
 	public ProductService productService;
 	
-	public Integer idNuevo;
-	
-
-	@GetMapping
-	public String listOrders(Model model) {//en mi trabajo final no necesitare un list orden
-		
-		try {
-			List<Order> orders= orderService.getAll();
-			model.addAttribute("orders", orders);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return "orders/list-orders";
-	}
-	
-	/*@GetMapping("new")
-	public String newOrder(Model model) {
-		Order order = new Order();
-		model.addAttribute("order", order);
-		return "orders/new-order";
-	}*/
+	public Integer idNew;
 	
 
 	
 	@GetMapping("{id}/new")
-	public String addProductoToOrder(Model model, @PathVariable("id") Integer id) {
+	public String newOrder(Model model, @PathVariable("id") Integer id) {
 
 					
 		try {
@@ -69,7 +48,7 @@ public class OrderController {
 				model.addAttribute("order", order);
 				Optional<Product> optional = productService.findById(id);
 				model.addAttribute("product", optional.get());
-				idNuevo=optional.get().getId();			
+				idNew =optional.get().getId();			
 					
 			}
 		} catch (Exception e) {
@@ -85,7 +64,7 @@ public class OrderController {
 		float total;
 		try {
 		
-				Optional<Product> optional = productService.findById(idNuevo);
+				Optional<Product> optional = productService.findById(idNew);
 				orderService.create(order);
 				OrderDetail orderDetail = new OrderDetail();
 				model.addAttribute("orderDetail", orderDetail);
@@ -94,7 +73,7 @@ public class OrderController {
 				total = optional.get().getPrice() * order.getQuantity();
 				orderDetail.setTotal(total);
 				orderDetailService.create(orderDetail);
-				idNuevo=0;
+				
 			 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -104,38 +83,7 @@ public class OrderController {
 		return "redirect:/orderDetails";
 	}
 	
-	/*@PostMapping("savenew")
-	public String saveOrder(Model model, @ModelAttribute("order") Order order) {
-		
-		try {
-			 orderService.create(order);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return "redirect:/orders";
-	}
 	
-	@GetMapping("{id}/edit")
-	public String editOrder(Model model, @PathVariable("id") Integer id) {
-		
-		try {
-			if(orderService.existsById(id)) {
-				Optional<Order> optional = orderService.findById(id);
-				model.addAttribute("order", optional.get());
-			}
-			else {
-				return "redirect:/orders";
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return "orders/edit-order";
-		
-	}
 	
 	@PostMapping("{id}/update")
 	public String updateOrder(Model model, @ModelAttribute("order") Order order, @PathVariable("id") Integer id) {
@@ -169,6 +117,6 @@ public class OrderController {
 		}
 		return "redirect:/orders";
 		
-	}*/
+	}
 
 }
