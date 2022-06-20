@@ -29,10 +29,10 @@
 		  <div class="col-sm-3 margin-b-10">
 		    <div class="card">
 		      <div class="card-body">
-		      	<img th:src = ${product.image} class="card-img-top img-responsive" alt="...">
+		      	<img th:src = "${product.image}?${product.image}:'Error'" class="card-img-top img-responsive" alt="...">
 		        
 		        <p class="card-text"> 
-		        	Categoria: <span th:text="${product.categorie.description}"></span>
+		        	Categoria: <span th:text="${product.categorie}?${product.categorie.description}:'Sin Categoria'"></span>
 		        	Marca: <span th:text="${product.brand}"></span> 
 		        	Descripcion: <span th:text="${product.description}"></span> 
 		        	Name: <span th:text="${product.name}"></span> 

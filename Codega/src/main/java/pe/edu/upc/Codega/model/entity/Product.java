@@ -37,11 +37,11 @@ public class Product {
 	@Column(name = "size", length = 20, nullable = false)
 	private String size;
 	
-	@Column(name = "image", length = 200, nullable = false)
+	@Column(name = "image", length = 200, nullable = true)
 	private String image;
 	
 	@ManyToOne
-	@JoinColumn(name = "categorie_id")
+	@JoinColumn(name = "categorie_id", nullable = true)
 	private Categories categorie;
 	
 	@OneToMany(mappedBy = "product")
@@ -115,6 +115,7 @@ public class Product {
 		this.image = image;
 	}
 
+
 	public List<OrderDetail> getOrderDetails() {
 		return orderDetails;
 	}
@@ -125,4 +126,5 @@ public class Product {
 
 	
 	
+
 }

@@ -28,4 +28,9 @@ public class ProductServiceImpl implements ProductService{
 		return this.productRepository.findByName(name);
 	}
 
+	@Override
+	public List<Product> findByBrand(String brand) throws Exception {
+		// TODO Auto-generated method stub
+		return this.productRepository.findByBrandContaining(brand);
+	}
 }
