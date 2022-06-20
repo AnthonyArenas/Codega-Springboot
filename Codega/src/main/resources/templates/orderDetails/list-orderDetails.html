@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: frag-head">
+	<meta charset="ISO-8859-1">
+	<title>Order Details</title>
+</head>
+<body>
+
+<header th:insert="layout/layout :: frag-header"></header>
+<main>
+	
+  <section>
+  
+	<nav aria-label="breadcrumb" class="margin-20">
+	  <ol class="breadcrumb">
+	    <li class="breadcrumb-item"><a th:href="@{/products}">Products</a></li>
+	    <li class="breadcrumb-item active" aria-current="page">Home</li>
+	  </ol>
+	</nav>
+  
+	<div class="card text-center margin-20">
+	  <div class="card-header">
+	    Order Details
+	  </div>
+	  <div class="card-body">
+	  
+	 	<table class="table table-striped">
+		  <thead>
+		    <tr>
+		      <th scope="col">#</th>
+		      <th scope="col">Total</th>
+		      <th scope="col">PickUpWay</th>
+		      <th scope="col">OrderDate</th>
+		     
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr th:each = "orderDetail : ${orderDetails}"> 
+		      <th scope="row" th:text="${orderDetail.id}"></th>
+		      <td th:text="${orderDetail.total}"></td>
+		      <td th:text="${orderDetail.order.pickUpWay}"></td>
+		      <td th:text="${orderDetail.order.orderDate}"></td>
+		      
+
+		       <td>
+		       		<a class="btn btn-danger" href="" role="button"><i class="fas fa-minus-circle"></i></a>
+			     
+		      </td>
+		   	
+		    </tr>
+		  </tbody>
+		</table>
+	 
+    
+	  </div>
+	  <div class="card-footer text-muted">
+	  	<a class="btn btn-primary" th:href="@{/products/new}" role="button">Nuevo <i class="fas fa-plus-circle"></i></a>
+	  </div>
+	</div>
+  </section>
+
+</main>
+<footer th:replace="layout/layout :: frag-footer"></footer>	
+
+</body>
+</html>

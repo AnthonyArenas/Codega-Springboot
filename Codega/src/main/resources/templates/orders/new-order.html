@@ -24,7 +24,7 @@
 	  </div>
 	  <div class="card-body" style="text-align: left">
 	  
-		<form th:action="@{/orders/savenew}" th:object="${order}" method="post" class="row g-3 needs-validation" novalidate>
+		<form th:action="@{'/orders/savenew'}" th:object="${order}" method="post" class="row g-3 needs-validation" novalidate>
 		
 		<div class="col-md-3">
 		    <label for="pickUpWay" class="form-label">Pick up way</label>
@@ -44,18 +44,18 @@
 		  
 		  
 		  <div class="col-md-2">
-		    <label for="total" class="form-label">Total</label>
-		    <input type="number" class="form-control" th:field="*{total}" required>
+		    <label for="quantity" class="form-label">Quantity</label>
+		    <input type="number" class="form-control" th:field="*{quantity}" required>
 		    <div class="valid-feedback">
 		      Looks good!
 		    </div>
 		  </div>
 		  
-		    
 		
+		  	
 		  <div class="col-12" style="text-align: Center">
-		    <button class="btn btn-success" type="submit">Crear</button>
-		    <a class="btn btn-danger" th:href="@{/orders}" role="button">Cancelar</a>
+		    <button class="btn btn-success" type="submit">Orderar</button>
+		    <a class="btn btn-danger" href="#" role="button">Cancelar</a>
 		  </div>
 		</form>
 	  

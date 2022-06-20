@@ -1,5 +1,8 @@
 package pe.edu.upc.Codega.model.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -39,7 +43,13 @@ public class Product {
 	@ManyToOne
 	@JoinColumn(name = "categorie_id")
 	private Categories categorie;
-
+	
+	@OneToMany(mappedBy = "product")
+	private List<OrderDetail> orderDetails;
+	
+	public Product() {
+		orderDetails = new ArrayList<>();
+	}
 	
 	public Integer getId() {
 		return id;
@@ -104,9 +114,15 @@ public class Product {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	
-	
 
+	public List<OrderDetail> getOrderDetails() {
+		return orderDetails;
+	}
 
+	public void setOrderDetails(List<OrderDetail> orderDetails) {
+		this.orderDetails = orderDetails;
+	}
+
+	
 	
 }
