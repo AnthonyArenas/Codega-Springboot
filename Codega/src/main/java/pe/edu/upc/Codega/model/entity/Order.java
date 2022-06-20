@@ -26,14 +26,19 @@ public class Order {
 	@Column(name = "order_date",length = 30, nullable = false)
 	private String orderDate;
 	
-	@Column(name = "total", nullable = false)
-	private float total;
+	@Column(name = "quantity", nullable = false)
+	private float quantity;
 	
+
 	@OneToMany(mappedBy = "order")
 	private List<Customer> customers;
 	
+	@OneToMany(mappedBy = "order")
+	private List<OrderDetail> orderDetails;
+	
 	public Order() {
 		customers=new ArrayList<>();
+		orderDetails=new ArrayList<>();
 	}
 
 	public Integer getId() {
@@ -44,13 +49,15 @@ public class Order {
 		this.id = id;
 	}
 
+	
+	
 
-	public float getTotal() {
-		return total;
+	public float getQuantity() {
+		return quantity;
 	}
 
-	public void setTotal(float total) {
-		this.total = total;
+	public void setQuantity(float quantity) {
+		this.quantity = quantity;
 	}
 
 	public List<Customer> getCustomers() {
@@ -76,7 +83,15 @@ public class Order {
 	public void setOrderDate(String orderDate) {
 		this.orderDate = orderDate;
 	}
-	
+
+	public List<OrderDetail> getOrderDetails() {
+		return orderDetails;
+	}
+
+	public void setOrderDetails(List<OrderDetail> orderDetails) {
+		this.orderDetails = orderDetails;
+	}
+
 	
 	
 	

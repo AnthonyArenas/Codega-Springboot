@@ -13,9 +13,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import pe.edu.upc.Codega.business.crud.OrderDetailService;
 import pe.edu.upc.Codega.business.crud.OrderService;
 import pe.edu.upc.Codega.business.crud.ProductService;
 import pe.edu.upc.Codega.model.entity.Order;
+import pe.edu.upc.Codega.model.entity.OrderDetail;
+import pe.edu.upc.Codega.model.entity.Product;
 
 @Controller
 @RequestMapping("/orders")
@@ -26,10 +29,16 @@ public class OrderController {
 	public OrderService orderService;
 	
 	@Autowired
+	public OrderDetailService orderDetailService;
+	
+	@Autowired
 	public ProductService productService;
 	
+	public Integer idNuevo;
+	
+
 	@GetMapping
-	public String listOrders(Model model) {
+	public String listOrders(Model model) {//en mi trabajo final no necesitare un list orden
 		
 		try {
 			List<Order> orders= orderService.getAll();
@@ -41,19 +50,27 @@ public class OrderController {
 		return "orders/list-orders";
 	}
 	
-	@GetMapping("new")
+	/*@GetMapping("new")
 	public String newOrder(Model model) {
 		Order order = new Order();
 		model.addAttribute("order", order);
 		return "orders/new-order";
-	}
+	}*/
+	
+
 	
 	@GetMapping("{id}/new")
 	public String addProductoToOrder(Model model, @PathVariable("id") Integer id) {
-		
+
+					
 		try {
 			if(productService.existsById(id)) {
-				
+				Order order = new Order();
+				model.addAttribute("order", order);
+				Optional<Product> optional = productService.findById(id);
+				model.addAttribute("product", optional.get());
+				idNuevo=optional.get().getId();			
+					
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -64,6 +81,30 @@ public class OrderController {
 	}
 	
 	@PostMapping("savenew")
+	public String saveOrder(Model model, @ModelAttribute("order") Order order) {
+		float total;
+		try {
+		
+				Optional<Product> optional = productService.findById(idNuevo);
+				orderService.create(order);
+				OrderDetail orderDetail = new OrderDetail();
+				model.addAttribute("orderDetail", orderDetail);
+				orderDetail.setOrder(order);
+				orderDetail.setProduct(optional.get());
+				total = optional.get().getPrice() * order.getQuantity();
+				orderDetail.setTotal(total);
+				orderDetailService.create(orderDetail);
+				idNuevo=0;
+			 
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "redirect:/orderDetails";
+	}
+	
+	/*@PostMapping("savenew")
 	public String saveOrder(Model model, @ModelAttribute("order") Order order) {
 		
 		try {
@@ -128,6 +169,6 @@ public class OrderController {
 		}
 		return "redirect:/orders";
 		
-	}
+	}*/
 
 }
