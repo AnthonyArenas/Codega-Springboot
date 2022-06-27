@@ -31,13 +31,11 @@ public class Order {
 	
 
 	@OneToMany(mappedBy = "order")
-	private List<Customer> customers;
-	
-	@OneToMany(mappedBy = "order")
 	private List<OrderDetail> orderDetails;
 	
+
+	
 	public Order() {
-		customers=new ArrayList<>();
 		orderDetails=new ArrayList<>();
 	}
 
@@ -50,7 +48,6 @@ public class Order {
 	}
 
 	
-	
 
 	public float getQuantity() {
 		return quantity;
@@ -60,13 +57,7 @@ public class Order {
 		this.quantity = quantity;
 	}
 
-	public List<Customer> getCustomers() {
-		return customers;
-	}
-
-	public void setCustomers(List<Customer> customers) {
-		this.customers = customers;
-	}
+	
 
 	public String getPickUpWay() {
 		return pickUpWay;
