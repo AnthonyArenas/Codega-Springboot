@@ -4,9 +4,13 @@ server:
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
+
     url: jdbc:postgresql://localhost:5432/university
+
+  
+
     username: postgres
-    password: Brawl123!
+    password: postgres
   jpa:
     database: postgresql
     hibernate:
