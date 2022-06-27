@@ -51,7 +51,7 @@
 
 		  
 		  <div class="col-md-3">
-		    <label for="career" class="form-label">Category</label>
+		    <label for="category" class="form-label">Category</label>
 		    <select class="form-select" th:field="*{categories}" required>
 		      <option selected disabled value="">Choose...</option>
 		      <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}">...</option>
@@ -62,10 +62,10 @@
 		  </div>
 		  
 		  <div class="col-md-3">
-		    <label for="career" class="form-label">User</label>
-		    <select class="form-select" th:field="*{users}" required>
+		    <label for="seller" class="form-label">Seller</label>
+		    <select class="form-select" th:field="*{seller}" required>
 		      <option selected disabled value="">Choose...</option>
-		      <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.username}">...</option>
+		      <option th:each="seller : ${sellers}" th:value="${seller.id}" th:text="${seller.username}">...</option>
 		    </select>
 		    <div class="invalid-feedback">
 		      Please select a valid state.
