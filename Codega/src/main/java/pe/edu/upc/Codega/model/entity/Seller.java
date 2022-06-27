@@ -14,8 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "users", indexes = {@Index(columnList = "id", name = "users_index_id")})
-public class Users {
+@Table(name = "sellers", indexes = {@Index(columnList = "id", name = "sellers_index_id")})
+public class Seller {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,11 +36,14 @@ public class Users {
 	@Column(name = "email", length = 40, nullable = false)	
 	private String email;
 	
-	@OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
-	private List<Publications> publications;
+	/*@OneToMany(mappedBy = "sellers", cascade = CascadeType.ALL)
+	private List<Publications> publications;*/
 	
-	@OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "seller", cascade = CascadeType.ALL)
 	private List<ListClothing> list_clothing;
+	
+	/*@OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
+	private List<ListClothing> users;*/
 	
 	
 	public Integer getId() {
@@ -92,25 +95,33 @@ public class Users {
 	}
 
 
-	public Users() {
-
+	public Seller() {
+		//publications = new ArrayList<>();
+        //users = new ArrayList<>();
 		list_clothing = new ArrayList<>();
 	}
 
-	public List<Publications> getPublications() {
+	public List<ListClothing> getList_clothing() {
+		return list_clothing;
+	}
+
+	public void setList_clothing(List<ListClothing> list_clothing) {
+		this.list_clothing = list_clothing;
+	}
+	
+
+	/*public List<Publications> getPublications() {
 		return publications;
 	}
 
 	public void setPublications(List<Publications> publications) {
 		this.publications = publications;
-	}
+	}*/
 
-	public List<ListClothing> getList_clothings() {
-		return list_clothing;
-	}
+	
+	
 
-	public void setList_clothings(List<ListClothing> list_clothings) {
-		this.list_clothing = list_clothings;
-	}
+	
+	
 
 }

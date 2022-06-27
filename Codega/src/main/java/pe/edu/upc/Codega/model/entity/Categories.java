@@ -52,10 +52,10 @@ public class Categories {
     private Integer id;
 	
 	@Column(name = "name", length = 100, nullable = false)
-	private String name;
+	private String name; //ejemplo:polos, chompas
 	
 	@Column(name = "description", length = 100, nullable = false)
-	private String description;
+	private String description;//destino de donde viene(pais),genero
 	
 	@Column(name = "urlToImage", length = 200, nullable = true)
 	private String urlToImage;

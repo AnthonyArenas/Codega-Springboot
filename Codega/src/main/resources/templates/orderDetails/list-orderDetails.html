@@ -18,43 +18,47 @@
 	  </ol>
 	</nav>
   
-	<div class="card text-center margin-20">
-	  <div class="card-header">
+	<div class="card margin-20">
+	  <div class="card-header text-center">
 	    Order Details
 	  </div>
 	  <div class="card-body">
 	  
-	 	<table class="table table-striped">
-		  <thead>
-		    <tr>
-		      <th scope="col">#</th>
-		      <th scope="col">Total</th>
-		      <th scope="col">PickUpWay</th>
-		      <th scope="col">OrderDate</th>
-		     
-		    </tr>
-		  </thead>
-		  <tbody>
-		    <tr th:each = "orderDetail : ${orderDetails}"> 
-		      <th scope="row" th:text="${orderDetail.id}"></th>
-		      <td th:text="${orderDetail.total}"></td>
-		      <td th:text="${orderDetail.order.pickUpWay}"></td>
-		      <td th:text="${orderDetail.order.orderDate}"></td>
-		      
-
-		       <td>
-		       		<a class="btn btn-danger" href="" role="button"><i class="fas fa-minus-circle"></i></a>
-			     
-		      </td>
-		   	
-		    </tr>
-		  </tbody>
-		</table>
+	 	<div class="row">
+		  <div th:each="orderDetail : ${orderDetails}" class="col-sm-3 margin-b-10">
+		    <div class="card">
+		      <div class="card-body">  
+		        <p class="text-center">
+		        	<span th:text="${orderDetail.id}"></span>
+		        </p>  
+		        
+		        <p class="text-start">
+		        	La fecha del pedido es <span th:text="${orderDetail.order.orderDate}"></span>,
+		        	<div th:switch="${orderDetail.order.pickUpWay}">
+		        		<div th:case="Recojo">
+		        			lo recoges en la tienda <br>
+		        		</div>
+		        		
+		        		<div th:case="Domicilio">
+		        		 	se lo entregaremos a tu domicilio<br>
+		        		</div>
+		        		
+		        	</div>
+		        	y el total a pagar es de <span th:text="${orderDetail.total}"></span> soles
+		        	
+		        </p> 
+		        
+		        
+		      </div>
+		    </div>
+		  </div>
+	    
+	  </div>
 	 
     
 	  </div>
 	  <div class="card-footer text-muted">
-	  	<a class="btn btn-primary" th:href="@{/products/new}" role="button">Nuevo <i class="fas fa-plus-circle"></i></a>
+	 
 	  </div>
 	</div>
   </section>
