@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import pe.edu.upc.Codega.business.crud.CategoriesService;
 import pe.edu.upc.Codega.business.crud.ListClothingService;
-import pe.edu.upc.Codega.business.crud.UsersService;
+import pe.edu.upc.Codega.business.crud.SellerService;
+
 import pe.edu.upc.Codega.model.entity.Categories;
 import pe.edu.upc.Codega.model.entity.ListClothing;
-import pe.edu.upc.Codega.model.entity.Users;
+import pe.edu.upc.Codega.model.entity.Seller;
+
 
 @Controller
 @RequestMapping("/listClothing")	// GET y POST
@@ -31,8 +33,9 @@ public class ListClothingController {
 	@Autowired
 	private CategoriesService categoriesService; 
 
+	
 	@Autowired
-	private UsersService usersService; 
+	private SellerService sellerService; 
 	
 	@GetMapping
 	public String listListClothings(Model model) {
@@ -56,8 +59,8 @@ public class ListClothingController {
 			List<Categories> categories = categoriesService.getAll();
 			model.addAttribute("categories", categories);
 			
-			List<Users> users = usersService.getAll();
-			model.addAttribute("users", users);
+			List<Seller> sellers = sellerService.getAll();
+			model.addAttribute("sellers", sellers);
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -85,8 +88,8 @@ public class ListClothingController {
 				model.addAttribute("listClothing", optional.get());
 				List<Categories> categories = categoriesService.getAll();
 				model.addAttribute("categories", categories);
-				List<Users> users = usersService.getAll();
-				model.addAttribute("users", users);
+				List<Seller> sellers = sellerService.getAll();
+				model.addAttribute("sellers", sellers);
 			} else {
 				return "redirect:/listClothing";
 			}
