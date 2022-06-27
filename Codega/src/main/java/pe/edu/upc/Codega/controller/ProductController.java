@@ -28,6 +28,7 @@ public class ProductController {
 		try {
 			List<Product> products = productService.getAll();
 			model.addAttribute("products", products);
+			model.addAttribute("productSearch", new Product());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -126,9 +127,17 @@ public class ProductController {
 		}
 		return "redirect:/products";
 	}
-		
 	
-	
-	
-	
+	@PostMapping("search")
+	public String searchProduct(Model model, @ModelAttribute("productSearch") Product productSearch) {
+		try {
+			List<Product> products = productService.findByBrand(productSearch.getBrand());
+			model.addAttribute("products", products);
+			model.addAttribute("productSearch", new Product());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "products/list-products";
+	}
 }

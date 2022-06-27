@@ -28,7 +28,7 @@
 		  <div class="col-sm-3 margin-b-10">
 		    <div class="card">
 		      <div class="card-body">
-		      	<img th:src = ${product.image} class="card-img-top img-responsive" alt="...">
+		      	<img th:src = "${product.image}" class="card-img-top img-responsive" alt="...">
 		        
 		        <p class="card-text"> 
 		        	Categoria: <span th:text="${product.categorie.description}"></span> <br>
@@ -36,8 +36,7 @@
 		        	Descripcion: <span th:text="${product.description}"></span> <br> 
 		        	Nombre: <span th:text="${product.name}"></span> <br>
 		        	Precio: <span th:text="${product.price}"></span> <br>
-		        	Talla: <span th:text="${product.size}"></span> <br>
-		        	 
+		        	Talla: <span th:text="${product.size}"></span> <br> 
 		        </p>
 		        <a class="btn btn-success" th:href="@{'/orders/' + ${product.id} + '/new'}" role="button"><i class="fas fa-shopping-cart"></i> Comprar</a>
 		       	<a class="btn btn-danger" th:href="@{/products}" role="button"><i class="fas fa-minus-circle"></i> Regresar</a>
