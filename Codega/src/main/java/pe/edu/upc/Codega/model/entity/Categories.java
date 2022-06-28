@@ -19,13 +19,7 @@ public class Categories {
 		return list_clothing;
 	}
 
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
+	
 
 	public String getUrlToImage() {
 		return urlToImage;
@@ -52,10 +46,7 @@ public class Categories {
     private Integer id;
 	
 	@Column(name = "name", length = 100, nullable = false)
-	private String name; //ejemplo:polos, chompas
-	
-	@Column(name = "description", length = 100, nullable = false)
-	private String description;//destino de donde viene(pais),genero
+	private String name;
 	
 	@Column(name = "urlToImage", length = 200, nullable = true)
 	private String urlToImage;
