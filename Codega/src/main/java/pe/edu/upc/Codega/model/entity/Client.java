@@ -27,17 +27,9 @@ public class Client {
 	@Column(name = "cellphone", nullable = false, length = 20)
 	private String cellphone;
 	
-	@Column(name = "direction", nullable = false, length = 50)
+	@Column(name = "direction", nullable = false, length = 100)
 	private String direction;
 	
-	@Column(name = "password", nullable = false, length = 30)
-	private String password;
-
-	public Client() {
-		super();
-		//TODO Auto-generated constructor stub
-
-	}
 
 	public int getId() {
 		return id;
@@ -78,15 +70,6 @@ public class Client {
 	public void setDirection(String direction) {
 		this.direction = direction;
 	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	
 	
 }

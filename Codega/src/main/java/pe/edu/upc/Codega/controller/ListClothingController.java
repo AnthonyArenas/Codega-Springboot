@@ -18,6 +18,7 @@ import pe.edu.upc.Codega.business.crud.ListClothingService;
 import pe.edu.upc.Codega.business.crud.SellerService;
 
 import pe.edu.upc.Codega.model.entity.Categories;
+import pe.edu.upc.Codega.model.entity.Clothing;
 import pe.edu.upc.Codega.model.entity.ListClothing;
 import pe.edu.upc.Codega.model.entity.Seller;
 
@@ -37,6 +38,8 @@ public class ListClothingController {
 	@Autowired
 	private SellerService sellerService; 
 	
+	
+	
 	@GetMapping
 	public String listListClothings(Model model) {
 		
@@ -49,6 +52,24 @@ public class ListClothingController {
 		}
 		
 		return "listClothing/list-listClothing";
+	}
+	
+	@GetMapping("{id}/view")
+	public String viewlistListClothing(Model model, @PathVariable("id") Integer id) {
+		try {
+			if(listClothingService.existsById(id)) {
+				Optional<ListClothing> optional = listClothingService.findById(id);
+				model.addAttribute("listClothing", optional.get());
+			}
+			else {
+				return "redirect:/inventory";
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "inventory/view-list-clothing";
 	}
 	
 	@GetMapping("new")	//	/ListClothings/new
