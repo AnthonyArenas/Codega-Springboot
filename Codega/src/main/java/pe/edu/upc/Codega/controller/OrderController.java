@@ -13,12 +13,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import pe.edu.upc.Codega.business.crud.ClothingService;
 import pe.edu.upc.Codega.business.crud.OrderDetailService;
 import pe.edu.upc.Codega.business.crud.OrderService;
-import pe.edu.upc.Codega.business.crud.ProductService;
+import pe.edu.upc.Codega.model.entity.Clothing;
 import pe.edu.upc.Codega.model.entity.Order;
 import pe.edu.upc.Codega.model.entity.OrderDetail;
-import pe.edu.upc.Codega.model.entity.Product;
+
 
 @Controller
 @RequestMapping("/orders")
@@ -31,8 +32,9 @@ public class OrderController {
 	@Autowired
 	public OrderDetailService orderDetailService;
 	
+	
 	@Autowired
-	public ProductService productService;
+	public ClothingService clothingService;
 	
 	public Integer idNew;
 	
@@ -43,11 +45,11 @@ public class OrderController {
 
 					
 		try {
-			if(productService.existsById(id)) {
+			if(clothingService.existsById(id)) {
 				Order order = new Order();
 				model.addAttribute("order", order);
-				Optional<Product> optional = productService.findById(id);
-				model.addAttribute("product", optional.get());
+				Optional<Clothing> optional = clothingService.findById(id);
+				model.addAttribute("clothing", optional.get());
 				idNew =optional.get().getId();			
 					
 			}
@@ -64,12 +66,12 @@ public class OrderController {
 		float total;
 		try {
 		
-				Optional<Product> optional = productService.findById(idNew);
+				Optional<Clothing> optional = clothingService.findById(idNew);
 				orderService.create(order);
 				OrderDetail orderDetail = new OrderDetail();
 				model.addAttribute("orderDetail", orderDetail);
 				orderDetail.setOrder(order);
-				orderDetail.setProduct(optional.get());
+				orderDetail.setClothing(optional.get());
 				total = optional.get().getPrice() * order.getQuantity();
 				orderDetail.setTotal(total);
 				orderDetailService.create(orderDetail);
