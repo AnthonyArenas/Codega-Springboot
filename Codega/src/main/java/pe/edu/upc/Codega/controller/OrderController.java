@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import pe.edu.upc.Codega.business.crud.ClothingService;
 import pe.edu.upc.Codega.business.crud.OrderDetailService;
 import pe.edu.upc.Codega.business.crud.OrderService;
+import pe.edu.upc.Codega.business.crud.SaleService;
 import pe.edu.upc.Codega.model.entity.Clothing;
 import pe.edu.upc.Codega.model.entity.Order;
 import pe.edu.upc.Codega.model.entity.OrderDetail;
+import pe.edu.upc.Codega.model.entity.Sale;
 
 
 @Controller
@@ -28,6 +30,9 @@ public class OrderController {
 	
 	@Autowired
 	public OrderService orderService;
+	
+	@Autowired
+	public SaleService saleService;
 	
 	@Autowired
 	public OrderDetailService orderDetailService;
@@ -70,11 +75,15 @@ public class OrderController {
 				orderService.create(order);
 				OrderDetail orderDetail = new OrderDetail();
 				model.addAttribute("orderDetail", orderDetail);
+				Sale sale = new Sale();
+				model.addAttribute("sale", sale);
 				orderDetail.setOrder(order);
 				orderDetail.setClothing(optional.get());
 				total = optional.get().getPrice() * order.getQuantity();
 				orderDetail.setTotal(total);
 				orderDetailService.create(orderDetail);
+				sale.setOrderDetail(orderDetail);
+				saleService.create(sale);
 				
 			 
 		} catch (Exception e) {

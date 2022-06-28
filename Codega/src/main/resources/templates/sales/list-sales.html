@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: frag-head">
+	<meta charset="ISO-8859-1">
+	<title>Sales</title>
+</head>
+<body>
+
+<header th:insert="layout/layout :: frag-header"></header>
+<main>
+	
+  <section>
+  
+	<nav aria-label="breadcrumb" class="margin-20">
+	  <ol class="breadcrumb">
+	    <li class="breadcrumb-item"><a th:href="@{/products}">Products</a></li>
+	    <li class="breadcrumb-item active" aria-current="page">Home</li>
+	  </ol>
+	</nav>
+  
+	<div class="card margin-20">
+	  <div class="card-header text-center">
+	    Sales
+	  </div>
+	  <div class="card-body">
+	  
+	 	<div class="row">
+		  <div th:each="sale : ${sales}" class="col-sm-3 margin-b-10">
+		    <div class="card">
+		      <div class="card-body">  
+		        <p class="text-center">
+		        	<span th:text="${sale.id}"></span>
+		        </p>  
+		        
+		        <p class="text-start">
+		        	TOTAL A PAGAR <span th:text="${sale.orderDetail.total}"></span>,
+		        	PRODUCTO <span th:text="${sale.orderDetail.clothing.model}"></span>,
+		        	NOMBRE VENDEDOR <span th:text="${sale.orderDetail.clothing.list_clothing.seller.firstName}"></span>,
+		        	
+		        	
+		        </p> 
+		        
+		        
+		      </div>
+		    </div>
+		  </div>
+	    
+	  </div>
+	 
+    
+	  </div>
+	  <div class="card-footer text-muted">
+	 
+	  </div>
+	</div>
+  </section>
+
+</main>
+<footer th:replace="layout/layout :: frag-footer"></footer>	
+
+</body>
+</html>
