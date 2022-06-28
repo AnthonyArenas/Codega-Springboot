@@ -57,8 +57,6 @@ public class Categories {
 	@OneToMany(mappedBy = "categories", cascade = CascadeType.ALL)
 	private List<ListClothing> list_clothing;
 	
-	@OneToMany(mappedBy = "categorie")
-	private List<Product> products;
 	
 	public Integer getId() {
 		return id;
@@ -79,16 +77,8 @@ public class Categories {
 	
 	public Categories() {
 		list_clothing = new ArrayList<>();
-		products= new ArrayList<>();
 	}
 
-	public List<Product> getProducts() {
-		return products;
-	}
-
-	public void setProducts(List<Product> products) {
-		this.products = products;
-	}
 	
 	
 }

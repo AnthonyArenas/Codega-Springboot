@@ -112,7 +112,7 @@ public class CategoriesController {
 		return "redirect:/categoriess";
 	}
 	
-	@GetMapping("{id}/view")
+	/*@GetMapping("{id}/view")
 	public String viewCategories(Model model, @PathVariable("id") Integer id) {
 		try {
 			if(categoriesService.existsById(id)) {
@@ -127,6 +127,19 @@ public class CategoriesController {
 			e.printStackTrace();
 		}
 		
+		return "categoriess/view-categoriess";
+	}*/
+	
+	@GetMapping("view")
+	public String viewCategories(Model model) {
+		try {
+			List<Categories> categoriess = categoriesService.getAll();
+			model.addAttribute("categoriess", categoriess);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return "categoriess/view-categoriess";
 	}
 	

@@ -18,6 +18,7 @@ import pe.edu.upc.Codega.business.crud.ListClothingService;
 import pe.edu.upc.Codega.model.entity.Clothing;
 import pe.edu.upc.Codega.model.entity.ListClothing;
 
+
 @Controller
 @RequestMapping("/inventory")	// GET y POST
 @SessionAttributes("{inventory}")
@@ -41,6 +42,24 @@ public class InventoryController {
 		}
 		
 		return "inventory/list-clothes";
+	}
+	
+	@GetMapping("{id}/view")
+	public String viewClothing(Model model, @PathVariable("id") Integer id) {
+		try {
+			if(clothingService.existsById(id)) {
+				Optional<Clothing> optional = clothingService.findById(id);
+				model.addAttribute("clothing", optional.get());
+			}
+			else {
+				return "redirect:/inventory";
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "inventory/view-clothing";
 	}
 	
 	@GetMapping

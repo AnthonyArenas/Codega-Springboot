@@ -19,9 +19,10 @@ public class OrderDetail {
 	@Column(name = "total", nullable = false)
 	private float total;
 	
+	
 	@ManyToOne
-	@JoinColumn(name = "product_id")
-	private Product product;
+	@JoinColumn(name = "clothing_id")
+	private Clothing clothing;
 	
 	@ManyToOne
 	@JoinColumn(name = "order_id")
@@ -43,14 +44,6 @@ public class OrderDetail {
 		this.total = total;
 	}
 
-	public Product getProduct() {
-		return product;
-	}
-
-	public void setProduct(Product product) {
-		this.product = product;
-	}
-
 	public Order getOrder() {
 		return order;
 	}
@@ -58,6 +51,15 @@ public class OrderDetail {
 	public void setOrder(Order order) {
 		this.order = order;
 	}
+
+	public Clothing getClothing() {
+		return clothing;
+	}
+
+	public void setClothing(Clothing clothing) {
+		this.clothing = clothing;
+	}
+	
 	
 	
 	

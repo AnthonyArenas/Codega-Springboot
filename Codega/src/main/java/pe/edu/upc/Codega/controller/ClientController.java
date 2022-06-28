@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import pe.edu.upc.Codega.business.crud.ClientService;
-import pe.edu.upc.Codega.business.crud.LabelService;
 import pe.edu.upc.Codega.model.entity.Client;
-import pe.edu.upc.Codega.model.entity.Label;
 
 @Controller
 @RequestMapping("/clients")
@@ -26,8 +24,6 @@ public class ClientController {
 	@Autowired
 	private ClientService clientService;
 	
-	@Autowired
-	private LabelService labelService;
 
 	@GetMapping
 	public String listClients(Model model) {
@@ -71,8 +67,8 @@ public class ClientController {
 		try {
 			Client client = clientService.findById(id).get();
 			model.addAttribute("client", client);
-			List<Label> labels = labelService.findByClientId(id);
-			model.addAttribute("labels", labels);
+			//List<Label> labels = labelService.findByClientId(id);
+			//model.addAttribute("labels", labels);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -96,11 +92,11 @@ public class ClientController {
 	public String delete(Map<String,Object> model, @RequestParam(value="id")Integer id) {
 		try {
 			if(id != null && id>0) {
-				List<Label> labels = labelService.findByClientId(id);
-				for(int i = 0; i < labels.size(); i++) {
-					labelService.deleteById(labels.get(i).getId());
-				}
-				clientService.deleteById(id);
+				//List<Label> labels = labelService.findByClientId(id);
+				//for(int i = 0; i < labels.size(); i++) {
+					//labelService.deleteById(labels.get(i).getId());
+				//}
+				//clientService.deleteById(id);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -110,7 +106,7 @@ public class ClientController {
 	
 	// Metodos del Labels
 	
-	@GetMapping("/labels/new/{idclient}")
+	/*@GetMapping("/labels/new/{idclient}")
 	public String newLabel(@PathVariable int idclient, Model model) {
 		try {
 			List<Client> clients = new ArrayList<Client>();
@@ -137,5 +133,5 @@ public class ClientController {
 			e.printStackTrace();
 			return "redirect:/clients";
 		}
-	}
+	}*/
 }
