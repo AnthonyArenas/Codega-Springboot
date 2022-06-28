@@ -1,7 +1,8 @@
 package pe.edu.upc.Codega.business.crud.impl;
 
-import java.io.Serializable;
 
+import java.io.Serializable;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -23,6 +24,8 @@ public class ClothingServiceImpl implements ClothingService, Serializable {
 	@Autowired
 	private  ClothingRepository clothingRepository;
 	
+
+	
 	@Override
 	public JpaRepository<Clothing, Integer> getJpaRepository() {
 		
@@ -33,6 +36,13 @@ public class ClothingServiceImpl implements ClothingService, Serializable {
 	@Override
 	public Clothing update(Clothing entity) throws Exception {
 		return clothingRepository.save(entity);
+	}
+
+
+	@Override
+	public List<Clothing> findByIdListClothing(Integer id) {
+		// TODO Auto-generated method stub
+		return clothingRepository.findByIdListClothing(id);
 	}
 
 

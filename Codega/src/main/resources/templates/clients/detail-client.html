@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/Base2 :: frag-head">
+<meta charset="ISO-8859-1">
+<title>Detalles del Cliente</title>
+</head>
+<body>
+
+	<header th:insert="layout/layout :: frag-header"></header>
+	<main>
+
+		<section>
+
+			<nav aria-label="breadcrumb" class="margin-20">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="#">Inicio</a></li>
+					<li class="breadcrumb-item"><a th:href="@{/clients}">Clientes</a></li>
+					<li class="breadcrumb-item active" aria-current="page">Datos
+						Personales</li>
+				</ol>
+			</nav>
+
+			<div class="card text-center margin-20">
+				<div class="card-header">Datos Personales del Cliente</div>
+				<div class="card-body" style="text-align: left;">
+
+					<form th:action="@{/clients/save}" th:object="${client}"
+						method="post" class="row g-3 needs-validation" novalidate>
+						<div class="col-md-6">
+							<label for="lastName" class="form-label">Apellido</label> <input
+								type="text" class="form-control" th:field="*{lastname}" required>
+							<div class="valid-feedback">Looks good!</div>
+						</div>
+						<div class="col-md-6">
+							<label for="firstName" class="form-label">Nombre</label> <input
+								type="text" class="form-control" th:field="*{firstname}"
+								required>
+							<div class="valid-feedback">Looks good!</div>
+						</div>
+
+						<div class="col-md-4">
+							<label for="cellphone" class="form-label">Celular</label> <input
+								type="text" class="form-control" th:field="*{cellphone}"
+								required>
+							<div class="valid-feedback">Looks good!</div>
+						</div>
+
+						<div class="col-md-7">
+							<label for="direction" class="form-label">Direccion</label> <input
+								type="text" class="form-control" th:field="*{direction}"
+								required>
+							<div class="valid-feedback">Looks good!</div>
+						</div>
+						<div class="col-md-1">
+							<label for="direction" class="form-label">Editar Datos</label> <a
+								class="btn btn-primary"
+								th:href="@{'/clients/goupdate/'+${client.id}}" role="button">
+								<i class="fas fa-user-edit"></i>
+							</a>
+						</div>
+					</form>
+				</div>
+				<br>
+				<div class="card-header">Etiquetas del Cliente</div>
+				<div class="card-body">
+
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th scope="col">Id</th>
+								<th scope="col">Tipo</th>
+								<th scope="col">Descripcion</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="label : ${labels}">
+								<th scope="row" th:text="${label.id}"></th>
+								<td th:text="${label.type}"></td>
+								<td th:text="${label.description}"></td>
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
+				<div class="card-footer text-muted"></div>
+				<a class="btn btn-primary" th:href="@{'/clients/labels/new/'+${client.id}}" role="button"> <i class="fas fa-plus"></i> Nueva Etiqueta </a>
+			</div>
+		</section>
+		<a class="btn btn-danger" th:href="@{/clients}" role="button">Regresar a Lista de Clientes</a>
+	</main>
+	<footer th:replace="layout/Base2 :: frag-footer"></footer>
+
+</body>
+</html>

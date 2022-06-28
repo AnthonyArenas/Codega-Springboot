@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: frag-head">
+	<meta charset="ISO-8859-1">
+	<title>Products</title>
+</head>
+<body>
+
+<header th:insert="layout/layout :: frag-header"></header>
+<main>
+	
+  <section>
+  
+	<nav aria-label="breadcrumb" class="margin-20">
+	  <ol class="breadcrumb">
+	     <li class="breadcrumb-item"><a th:href="@{/products}">Products</a></li>
+	    <li class="breadcrumb-item"><a th:href="@{/orders}">Orders</a></li>
+	    <li class="breadcrumb-item active" aria-current="page">Home</li>
+	  </ol>
+	</nav>
+  
+	<div class="card text-center margin-20">
+	  <div class="card-header">
+	    Orders
+	  </div>
+	  <div class="card-body">
+	    
+	    <table class="table table-striped">
+		  <thead>
+		    <tr>
+		      <th scope="col">#</th>
+		      <th scope="col">PickUpWay</th>
+		      <th scope="col">OrderDate</th>
+		      <th scope="col">Total</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr th:each = "order : ${orders}"> 
+		      <th scope="row" th:text="${order.id}"></th>
+		      <td th:text="${order.pickUpWay}"></td>
+		      <td th:text="${order.orderDate}"></td>
+		      <td th:text="${order.total}"></td>
+
+		       <td>
+		       		<a class="btn btn-warning" th:href="@{'/orders/' + ${order.id} + '/edit'}" role="button"><i class="fas fa-edit"></i></a>
+		       		<a class="btn btn-danger" th:href="@{'/orders/' + ${order.id} + '/del'}" role="button"><i class="fas fa-minus-circle"></i></a>
+			     
+		      </td>
+		   	
+		    </tr>
+		  </tbody>
+		</table>
+	    
+	  </div>
+	  <div class="card-footer text-muted">
+	  	<a class="btn btn-primary" th:href="@{/orders/new}" role="button">Nuevo <i class="fas fa-plus-circle"></i></a>
+	  </div>
+	</div>
+  </section>
+
+</main>
+<footer th:replace="layout/layout :: frag-footer"></footer>	
+
+</body>
+</html>

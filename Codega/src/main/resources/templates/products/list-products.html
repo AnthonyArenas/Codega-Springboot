@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: frag-head">
+<meta charset="ISO-8859-1">
+<title>Products</title>
+</head>
+<body>
+
+
+<header th:insert="layout/layout :: frag-header"></header>
+<main>
+	
+  <section>
+  
+	<nav aria-label="breadcrumb" class="margin-20">
+	  <ol class="breadcrumb">
+	    <li class="breadcrumb-item"><a th:href="@{/products}">Products</a></li>
+	    <li class="breadcrumb-item"><a th:href="@{/orderDetails}">Order Details</a></li>
+	    <li class="breadcrumb-item active" aria-current="page">Home</li>
+	  </ol>
+	</nav>
+  
+	<div class="card text-center margin-20">
+	  <div class="card-header">
+	    Products
+	  </div>
+	  <div class="card-body">
+	  
+	  <div class="row">
+		  <div th:each="product : ${products}" class="col-sm-3 margin-b-10">
+		    <div class="card">
+		      <div class="card-body">
+		      	<img th:src = ${product.image} class="card-img-top img-responsive" alt="...">
+		        
+		        <p class="card-text"> 
+		        	Categoria: <span th:text="${product.categorie.description}"></span>
+		        	 
+			 
+		        </p>
+		        <a class="btn btn-warning" th:href="@{'/products/' + ${product.id} + '/view'}" role="button"><i class="fas fa-eye"></i> Ver</a>
+
+		      </div>
+		    </div>
+		  </div>
+	    
+	  </div>
+	 
+    
+	  </div>
+	  <div class="card-footer text-muted">
+	
+	  </div>
+	</div>
+  </section>
+
+</main>
+<footer th:replace="layout/layout :: frag-footer"></footer>	
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: frag-head">
+	<meta charset="ISO-8859-1">
+	<title>Order Details</title>
+</head>
+<body>
+
+<header th:insert="layout/layout :: frag-header"></header>
+<main>
+	
+  <section>
+  
+	<nav aria-label="breadcrumb" class="margin-20">
+	  <ol class="breadcrumb">
+	    <li class="breadcrumb-item"><a th:href="@{/products}">Products</a></li>
+	    <li class="breadcrumb-item active" aria-current="page">Home</li>
+	  </ol>
+	</nav>
+  
+	<div class="card margin-20">
+	  <div class="card-header text-center">
+	    Order Details
+	  </div>
+	  <div class="card-body">
+	  
+	 	<div class="row">
+		  <div th:each="orderDetail : ${orderDetails}" class="col-sm-3 margin-b-10">
+		    <div class="card">
+		      <div class="card-body">  
+		        <p class="text-center">
+		        	<span th:text="${orderDetail.id}"></span>
+		        </p>  
+		        
+		        <p class="text-start">
+		        	La fecha del pedido es <span th:text="${orderDetail.order.orderDate}"></span>,
+		        	<div th:switch="${orderDetail.order.pickUpWay}">
+		        		<div th:case="Recojo">
+		        			lo recoges en la tienda <br>
+		        		</div>
+		        		
+		        		<div th:case="Domicilio">
+		        		 	se lo entregaremos a tu domicilio<br>
+		        		</div>
+		        		
+		        	</div>
+		        	y el total a pagar es de <span th:text="${orderDetail.total}"></span> soles
+		        	
+		        </p> 
+		        
+		        
+		      </div>
+		    </div>
+		  </div>
+	    
+	  </div>
+	 
+    
+	  </div>
+	  <div class="card-footer text-muted">
+	 
+	  </div>
+	</div>
+  </section>
+
+</main>
+<footer th:replace="layout/layout :: frag-footer"></footer>	
+
+</body>
+</html>

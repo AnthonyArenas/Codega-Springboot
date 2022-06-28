@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/Base2 :: frag-head">
+<meta charset="ISO-8859-1">
+<title>Nueva Etiqueta</title>
+</head>
+<body>
+
+	<header th:insert="layout/layout :: frag-header"></header>
+	<main>
+
+		<section>
+
+			<nav aria-label="breadcrumb" class="margin-20">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="#">Inicio</a></li>
+					<li class="breadcrumb-item"><a th:href="@{/clients}">Etiquetas</a></li>
+					<li class="breadcrumb-item active" aria-current="page">Nuevo</li>
+				</ol>
+			</nav>
+
+			<div class="card text-center margin-20">
+				<div class="card-header">Etiquetas</div>
+				<div class="card-body" style="text-align: left;">
+
+					<form th:action="@{/labels/save}" th:object="${label}"
+						method="post" class="row g-3 needs-validation" novalidate>
+						<div class="col-md-1">
+							<label for="id" class="form-label">id</label> <input
+								type="number" class="form-control" th:field="*{id}" required>
+							<div class="valid-feedback">Looks good!</div>
+						</div>
+						<div class="col-md-3">
+							<label for="type" class="form-label">Tipo</label> <input
+								type="text" class="form-control" th:field="*{type}" required>
+							<div class="valid-feedback">Looks good!</div>
+						</div>
+						<div class="col-md-2">
+							<label for="description" class="form-label">Descripcion</label> <input
+								type="text" class="form-control" th:field="*{description}"
+								required>
+							<div class="valid-feedback">Looks good!</div>
+						</div>
+
+						<div class="col-md-4">
+							<label for="client" class="form-label">Asignar Cliente</label> <select
+								class="form-select" th:field="*{client}" required>
+								<option selected disabled value="">Elegi...</option>
+								<option th:each="c : ${clients}" th:value="${c.id}"
+									th:text="${c.firstname}">...</option>
+							</select>
+							<div class="invalid-feedback">Porfavor. Seleccione una opcion valida.
+							</div>
+						</div>
+
+						<div class="col-12" style="text-align: center;">
+							<button class="btn btn-success" type="submit">
+								<i class="fas fa-save"></i> Salvar
+							</button>
+						</div>
+					</form>
+
+				</div>
+				<div class="card-footer text-muted"></div>
+			</div>
+		</section>
+
+	</main>
+	<footer th:replace="layout/Base2 :: frag-footer"></footer>
+
+</body>
+</html>

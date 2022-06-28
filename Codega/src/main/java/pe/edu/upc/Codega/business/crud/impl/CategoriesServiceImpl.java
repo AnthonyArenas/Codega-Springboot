@@ -1,7 +1,7 @@
 package pe.edu.upc.Codega.business.crud.impl;
 
 import java.io.Serializable;
-
+import java.util.List;
 
 import javax.transaction.Transactional;
 

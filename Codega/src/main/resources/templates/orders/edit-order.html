@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: frag-head">
+	<meta charset="ISO-8859-1">
+	<title>Edit Order</title>
+</head>
+<body>
+
+<header th:insert="layout/layout :: frag-header"></header>
+<main>
+	
+  <section>
+  
+	<nav aria-label="breadcrumb" class="margin-20">
+	  <ol class="breadcrumb">
+	    <li class="breadcrumb-item"><a th:href="@{/orders}">Orders</a></li>
+	    <li class="breadcrumb-item active" aria-current="page">Editar</li>
+	  </ol>
+	</nav>
+  
+	<div class="card text-center margin-20">
+	  <div class="card-header">
+	   Editar Orders
+	  </div>
+	  <div class="card-body" style="text-align: left">
+	  
+		<form th:action="@{'/orders/' + ${order.id} + '/update'}" th:object="${order}" method="post" class="row g-3 needs-validation" novalidate>
+		
+		<div class="col-md-3">
+		    <label for="pickUpWay" class="form-label">Pick Up Way</label>
+		    <input type="text" class="form-control" th:field="*{pickUpWay}" required>
+		    <div class="valid-feedback">
+		      Looks good!
+		    </div>
+		  </div>
+			
+		  <div class="col-md-3">
+		    <label for="orderDate" class="form-label">Order Date</label>
+		    <input type="text" class="form-control" th:field="*{orderDate}" required>
+		    <div class="valid-feedback">
+		      Looks good!
+		    </div>
+		  </div>
+		  
+		  
+		  <div class="col-md-2">
+		    <label for="total" class="form-label">Total</label>
+		    <input type="number" class="form-control" th:field="*{total}" required>
+		    <div class="valid-feedback">
+		      Looks good!
+		    </div>
+		  </div>
+		  
+		    
+		
+		  <div class="col-12" style="text-align: Center">
+		    <button class="btn btn-warning" type="submit">Actualizar</button>
+		    <a class="btn btn-danger" th:href="@{/orders}" role="button">Cancelar</a>
+		  </div>
+		</form>
+	  
+	  </div>
+	  
+	  <div class="card-footer text-muted">
+	  
+	  </div>
+	</div>
+  </section>
+
+</main>
+<footer th:replace="layout/layout :: frag-footer"></footer>	
+
+</body>
+</html>

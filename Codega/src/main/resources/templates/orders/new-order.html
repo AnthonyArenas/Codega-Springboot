@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: frag-head">
+	<meta charset="ISO-8859-1">
+	<title>New Order</title>
+</head>
+<body>
+
+<header th:insert="layout/layout :: frag-header"></header>
+<main>
+	
+  <section>
+  
+	<nav aria-label="breadcrumb" class="margin-20">
+	  <ol class="breadcrumb">
+	    <li class="breadcrumb-item"><a th:href="@{/products}">Products</a></li>
+	    <li class="breadcrumb-item active" aria-current="page">Nuevo</li>
+	  </ol>
+	</nav>
+  
+	<div class="card text-center margin-20">
+	  <div class="card-header">
+	    Nuevo Order
+	  </div>
+	  <div class="card-body" style="text-align: left">
+	  
+		<form th:action="@{'/orders/savenew'}" th:object="${order}" method="post" class="row g-3 needs-validation" novalidate>
+		
+		
+		<div class="col-md-3">
+		    <label for="pickUpWay" class="form-label">Pick up way</label>
+		    <input type="text" class="form-control" th:field="*{pickUpWay}" required>
+		    <div class="valid-feedback">
+		      Looks good!
+		    </div>
+		</div>
+		
+			
+		  <div class="col-md-3">
+		    <label for="orderDate" class="form-label">Order date</label>
+		    <input type="text" class="form-control" th:field="*{orderDate}" required>
+		    <div class="valid-feedback">
+		      Looks good!
+		    </div>
+		  </div>
+		  
+		    
+		  <div class="col-md-2">
+		    <label for="quantity" class="form-label">Quantity</label>
+		    <input type="number" class="form-control" th:field="*{quantity}" required>
+		    <div class="valid-feedback">
+		      Looks good!
+		    </div>
+		  </div>
+		  
+		
+		  	
+		  <div class="col-12" style="text-align: Center">
+		    <button class="btn btn-success" type="submit">Orderar</button>
+		    <a class="btn btn-danger" th:href="@{/products}" role="button">Cancelar</a>
+		  </div>
+		</form>
+	  
+	  </div>
+	  
+	  <div class="card-footer text-muted">
+	  
+	  </div>
+	</div>
+  </section>
+
+</main>
+<footer th:replace="layout/layout :: frag-footer"></footer>	
+
+</body>
+</html>
