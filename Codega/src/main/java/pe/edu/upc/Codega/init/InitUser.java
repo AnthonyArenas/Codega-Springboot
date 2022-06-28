@@ -48,7 +48,6 @@ public class InitUser implements CommandLineRunner {
 		jhon.addAuthority("ROLE_SELLER");
 		jhon.addAuthority("ACCESS_VIEW_MATRI");
 		userRepository.save(jhon);*/
-				
 	}
 
 }
