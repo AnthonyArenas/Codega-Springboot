@@ -42,7 +42,12 @@ public class InitUser implements CommandLineRunner {
 		User admin = new User("admin", bcpe.encode("admin"), Segment.CLIENT, 2);
 		admin.addAuthority("ROLE_ADMINISTRATOR");
 		admin.addAuthority("ACCESS_ALL");
-		userRepository.save(admin);*/
+		userRepository.save(admin);
+		
+		User jhon = new User("jhon", bcpe.encode("jhon"), Segment.SELLER, 2);
+		jhon.addAuthority("ROLE_SELLER");
+		jhon.addAuthority("ACCESS_VIEW_MATRI");
+		userRepository.save(jhon);*/
 				
 	}
 

@@ -1,25 +1,50 @@
 <!doctype html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" >
-	<link th:href="@{/css/fontawesome.min.css}" rel="stylesheet" >
-	<link th:href="@{/css/solid.min.css}" rel="stylesheet" >
-	<title>Hello, world!</title>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" 
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: frag-head">
+	<title>Codega project</title>
 </head>
 <body>
 
-<h1>Hello Developers</h1>
+<header th:insert="layout/layout :: frag-header"></header>
+<main>
+	
+  <section class="container py-4" sec:authorize="isAnonymous()">
+  	<img th:src="@{/images/Codega.jpg}" id="imagen" class="card-img-top img-responsive" alt="..."/>
+  	<div class="p-5 mb-4 bg-light rounded-3">
+      <div class="container-fluid py-5 text-center">
+        <h1 class="display-5 fw-bold"> Bienvenido a nuestro proyecto </h1>
+        <h2 class="display-5 fw-bold"> Integrantes: </h2>
+        
+        <p class="display-5 fw-bold"> Anthony </p>
+        <p class="display-5 fw-bold"> Brian </p>
+        <p class="display-5 fw-bold"> Juan </p>
+   
+      </div>
+    </div>
+  	
+  </section>
+  
+    <section class="container py-4" sec:authorize="isAuthenticated()">
+  		<div sec:authorize="hasRole('ROLE_SELLER')" class="p-5 mb-4 bg-light rounded-3">
+		      <div class="container-fluid py-5 text-center">
+		        <h1 class="display-5 fw-bold"> Perfil </h1>
+		         
+		        <p class="display-5 fw-bold"> Nombre: <span th:text="${seller.firstName}"></span></p>
+		        <p class="display-5 fw-bold"> Apellido: <span th:text="${seller.lastName}"></span> </p>
+		        <p class="display-5 fw-bold"> Segment: <span th:text="${segment}">Segment</span> </p>
+		   
+		      </div>
+		 
+		</div>
+		<div sec:authorize="hasRole('ROLE_CLIENT')" class="alert alert-success" role="alert">
+	 		 <p>hola</p>
+		</div>
+  	
+  	</section>
 
-<div class="card" style="width: 18rem;">
-	<ul class="list-group list-group-flush">
-		<li class="list-group-item">An item</li>
-		<li class="list-group-item">A second item</li>
-		<li class="list-group-item">A third item</li>
-	</ul>
-</div>
+</main>
+<footer th:replace="layout/layout :: frag-footer"></footer>	
 
-<script src="@{/js/bootstrap.bundle.min.js}" ></script>
 </body>
 </html>
