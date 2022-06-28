@@ -42,6 +42,8 @@ public class Seller {
 	@OneToMany(mappedBy = "seller", cascade = CascadeType.ALL)
 	private List<ListClothing> list_clothing;
 	
+
+	
 	/*@OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
 	private List<ListClothing> users;*/
 	
@@ -49,6 +51,7 @@ public class Seller {
 	public Integer getId() {
 		return id;
 	}
+
 
 	public void setId(Integer id) {
 		this.id = id;
@@ -99,6 +102,7 @@ public class Seller {
 		//publications = new ArrayList<>();
         //users = new ArrayList<>();
 		list_clothing = new ArrayList<>();
+		
 	}
 
 	public List<ListClothing> getList_clothing() {

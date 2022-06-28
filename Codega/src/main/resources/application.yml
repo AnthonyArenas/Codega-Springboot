@@ -10,7 +10,7 @@ spring:
   
 
     username: postgres
-    password: Brawl123!
+    password: upc2022
   jpa:
     database: postgresql
     hibernate:
