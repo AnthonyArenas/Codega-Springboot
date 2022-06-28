@@ -33,14 +33,10 @@ public class Client {
 	@Column(name = "password", nullable = false, length = 30)
 	private String password;
 
-	@OneToMany(mappedBy = "client")
-	private List<Label> labels;
-
-	
 	public Client() {
 		super();
 		//TODO Auto-generated constructor stub
-		labels = new ArrayList<Label>();
+
 	}
 
 	public int getId() {
@@ -91,12 +87,6 @@ public class Client {
 		this.password = password;
 	}
 
-	public List<Label> getLabels() {
-		return labels;
-	}
-
-	public void setLabels(List<Label> labels) {
-		this.labels = labels;
-	}
+	
 	
 }

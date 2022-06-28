@@ -1,12 +1,17 @@
 package pe.edu.upc.Codega.model.entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -57,6 +62,13 @@ public class Clothing {
 	@JoinColumn(name = "list_clothing_id", nullable = true)
 	private ListClothing list_clothing;	// career_idd
 	
+	@OneToMany(mappedBy = "clothing")
+	private List<OrderDetail> orderDetails;
+	
+	public Clothing() {
+		orderDetails = new ArrayList<>();
+	}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -81,5 +93,15 @@ public class Clothing {
 	public void setPrice(float price) {
 		this.price = price;
 	}
+
+	public List<OrderDetail> getOrderDetails() {
+		return orderDetails;
+	}
+
+	public void setOrderDetails(List<OrderDetail> orderDetails) {
+		this.orderDetails = orderDetails;
+	}
+	
+	
 	
 }
