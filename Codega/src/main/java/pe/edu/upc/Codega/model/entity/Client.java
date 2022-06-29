@@ -12,11 +12,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "client")
+@Table(name = "clients")
 public class Client {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	
 	@Column(name = "last_name", nullable = false, length = 20)
 	private String lastname;
@@ -30,14 +30,25 @@ public class Client {
 	@Column(name = "direction", nullable = false, length = 100)
 	private String direction;
 	
+	@OneToMany(mappedBy = "client")
+	private List<Order> orders;
+	
+	public Client() {
+		orders = new ArrayList<>();
+	}
+	
 
-	public int getId() {
+
+
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+
+	public void setId(Integer id) {
 		this.id = id;
 	}
+
 
 	public String getLastname() {
 		return lastname;
@@ -70,6 +81,17 @@ public class Client {
 	public void setDirection(String direction) {
 		this.direction = direction;
 	}
+
+
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
+	
 	
 	
 }

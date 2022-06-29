@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Index;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -29,6 +31,19 @@ public class Order {
 	@Column(name = "quantity", nullable = false)
 	private float quantity;
 	
+	@Column(name = "card",length = 13, nullable = false)
+	private String card;
+	
+	@Column(name = "code",length = 3, nullable = false)
+	private String code;
+	
+	@Column(name = "type",length = 15, nullable = false)
+	private String type;
+	
+	
+	@ManyToOne
+	@JoinColumn(name = "client_id")
+	private Client client;
 
 	@OneToMany(mappedBy = "order")
 	private List<OrderDetail> orderDetails;
@@ -83,8 +98,43 @@ public class Order {
 		this.orderDetails = orderDetails;
 	}
 
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
+	public String getCard() {
+		return card;
+	}
+
+	public void setCard(String card) {
+		this.card = card;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+	
+	
+
 	
 	
 	
 	 
 }
+

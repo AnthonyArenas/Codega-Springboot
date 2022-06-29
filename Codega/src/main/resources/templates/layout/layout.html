@@ -21,23 +21,31 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-				
 					<li class="nav-item" sec:authorize="hasRole('ROLE_SELLER')">
-						<a class="nav-link" aria-current="page" href="/listClothing"><i class="fas fa-shopping-cart"></i> List Clothing</a>
+						<a class="nav-link" aria-current="page" href="/listClothing"  style="color: black;"><i class="fas fa-shopping-cart" style="color: black;"></i> List Clothing </a>
 					</li>
 					<li class="nav-item" sec:authorize="hasRole('ROLE_SELLER')">
-						<a class="nav-link" aria-current="page" href="/inventory"><i class="fas fa-shopping-cart"></i> Inventory</a>
+						<a class="nav-link" aria-current="page" href="/inventory" style="color: black;"><i class="fas fa-shopping-cart" style="color: black;"></i> Inventory</a>
 					</li>
+					
+					<li class="nav-item" sec:authorize="hasRole('ROLE_SELLER')">
+						<a class="nav-link" aria-current="page" href="/sales" style="color: black;"><i class="fas fa-shopping-cart" style="color: black;"></i> Sales</a>
+					</li>
+					
 					<li class="nav-item" sec:authorize="hasRole('ROLE_ADMINISTRATOR')">
-						<a class="nav-link" aria-current="page" href="/clients"><i class="fas fa-shopping-cart"></i> Clients</a>
+						<a class="nav-link" aria-current="page" href="/clients" style="color: black;"><i class="fas fa-shopping-cart" style="color: black;"></i> Users</a>
+					</li>
+					
+					<li class="nav-item" sec:authorize="hasRole('ROLE_ADMINISTRATOR')">
+						<a class="nav-link" aria-current="page" href="/categoriess" style="color: black;"><i class="fas fa-shopping-cart" style="color: black;"></i> New Categorie</a>
 					</li>
 					
 					<li class="nav-item" sec:authorize="hasRole('ROLE_CLIENT')">
-						<a class="nav-link" aria-current="page" href="/categoriess"><i class="fas fa-shopping-cart"></i> Categories</a>
+						<a class="nav-link" aria-current="page" href="/categoriess" style="color: black;"><i class="fas fa-shopping-cart" style="color: black;"></i> Categories</a>
 					</li>
 					
 					<li class="nav-item" sec:authorize="hasRole('ROLE_CLIENT')">
-						<a class="nav-link" aria-current="page" href="/orderDetails"><i class="fas fa-shopping-cart"></i> Order Details</a>
+						<a class="nav-link" aria-current="page" href="/orderDetails" style="color: black;"><i class="fas fa-shopping-cart" style="color: black;"></i> Order Details</a>
 					</li>
 					
 				</ul>
@@ -45,20 +53,39 @@
 					<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
 					<button class="btn btn-warning" type="submit"><i class="fas fa-search"></i></button>
 				</form>
+				<a sec:authorize="isAnonymous()" class="btn btn-outline-light"
+						th:href="@{/users/sign-up}" role="button"><i
+						class="fas fa-user"></i> Sign-up</a> 
+						
+				<a sec:authorize="isAnonymous()" class="btn btn-outline-warning" th:href="@{/login}" role="button"><i class="fas fa-user"></i> Sign-in</a>
 				
-					      <a sec:authorize="isAnonymous()" class="btn btn-outline-warning" th:href="@{/login}" role="button"><i class="fas fa-user"></i> Sign-in</a>
+				    <div class="dropdown" sec:authorize="isAuthenticated()">
+						  <a class="btn btn-outline-warning dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+						    <i class="fas fa-user-circle"></i> <span sec:authentication="name">Username</span>
+						  </a>			
+						  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+						  <li><a class="dropdown-item" th:href="@{/users/view-profile}">View Profile</a></li>
+						    <li><hr class="dropdown-divider"></li>
+						    <li><a class="dropdown-item" th:href="@{/logout}">Logout</a></li>
+						  </ul>
+					 </div>
+					 
+					
+				
+
+				
+						
+						
+
+					
+					
+					
+				
+					      
 	      
-	      <div class="dropdown" sec:authorize="isAuthenticated()">
-			  <a class="btn btn-outline-warning dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-			    <i class="fas fa-user-circle"></i> <span sec:authentication="name">Username</span>
-			  </a>			
-			  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-			    <li><a class="dropdown-item" href="#">View Profile</a></li>
-			    <li><a class="dropdown-item" href="#">Change Password</a></li>
-			    <li><hr class="dropdown-divider"></li>
-			    <li><a class="dropdown-item" th:href="@{/logout}">Logout</a></li>
-			  </ul>
-		  </div>
+	  
+			
+				
 			</div>
 		</div>
 	</nav>
@@ -69,7 +96,7 @@
 </main>
 <footer th:fragment="frag-footer">
 	<p>Codega</p>
-	<script src="@{/js/bootstrap.bundle.min.js}" ></script>
+	<script th:src="@{/js/bootstrap.bundle.min.js}" ></script>
 </footer>
 
 </body>

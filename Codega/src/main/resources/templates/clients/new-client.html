@@ -1,96 +1,90 @@
 <!doctype html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="layout/Base2 :: frag-head">
-	<meta charset="ISO-8859-1">
-	<title th:if="${client.id}==0">Nuevo Cliente</title>
-	<title th:unless="${client.id}==0">Editar Cliente</title>
+<meta charset="ISO-8859-1">
+<title th:if="${client.id}==0">Nuevo Cliente</title>
+<title th:unless="${client.id}==0">Editar Cliente</title>
 </head>
 <body>
 
-<header th:insert="layout/layout :: frag-header"></header>
-<main>
-	
-  <section>
-  
-  	<nav aria-label="breadcrumb" class="margin-20">
-	  <ol class="breadcrumb">
-	    <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-	    <li class="breadcrumb-item"><a th:href="@{/clients}">Clientes</a></li>
-	    <li th:if="${client.id}==0" class="breadcrumb-item active" aria-current="page">Nuevo</li>
-	    <li th:unless="${client.id}==0" class="breadcrumb-item"><a th:href="@{'/clients/godetail/'+${client.id}}">Datos Personales</a></li>
-	    <li th:unless="${client.id}==0" class="breadcrumb-item active" aria-current="page">Editar Datos</li>
-	  </ol>
-	</nav>
-	
-	<div class="card text-center margin-20">
-	  <div class="card-header">
-	    Clientes
-	  </div>
-	  <div class="card-body" style="text-align: left;">
-	  	
-	  	<form th:action="@{/clients/save}" th:object="${client}" method="post" class="row g-3 needs-validation" novalidate>
-		  <div class="col-md-1">
-		    <label for="id" class="form-label">id</label>
-		    <input type="number" class="form-control" th:field="*{id}" required>
-		    <div class="valid-feedback">
-		      Looks good!
-		    </div>
-		  </div>  
-		  <div class="col-md-3">
-		    <label for="lastName" class="form-label">Apellido</label>
-		    <input type="text" class="form-control" th:field="*{lastname}" required>
-		    <div class="valid-feedback">
-		      Looks good!
-		    </div>
-		  </div>
-		  <div class="col-md-2">
-		    <label for="firstName" class="form-label">Nombre</label>
-		    <input type="text" class="form-control" th:field="*{firstname}" required>
-		    <div class="valid-feedback">
-		      Looks good!
-		    </div>
-		  </div>
-		  
-		  <div class="col-md-2">
-		    <label for="cellphone" class="form-label">Celular</label>
-		    <input type="text" class="form-control" th:field="*{cellphone}" required>
-		    <div class="valid-feedback">
-		      Looks good!
-		    </div>
-		  </div>
-		  
-		  <div class="col-md-2">
-		    <label for="direction" class="form-label">Direccion</label>
-		    <input type="text" class="form-control" th:field="*{direction}" required>
-		    <div class="valid-feedback">
-		      Looks good!
-		    </div>
-		  </div>
-		  
-		  <div class="col-md-2">
-		    <label for="password" class="form-label">Contrasena</label>
-		    <input type="text" class="form-control" th:field="*{password}" required>
-		    <div class="valid-feedback">
-		      Looks good!
-		    </div>
-		  </div>
-		  
-		  <div class="col-12" style="text-align: center;">
-		    <button class="btn btn-success" type="submit"><i class="fas fa-save"></i> Salvar</button>
-		    <a th:if="${client.id}==0" class="btn btn-danger" th:href="@{/clients}" role="button">Cancelar</a>
-		    <a th:unless="${client.id}==0" class="btn btn-danger" th:href="@{'/clients/godetail/'+${client.id}}" role="button">Cancelar</a>
-		  </div>
-		</form>
-	  
-	  </div>
-	  <div class="card-footer text-muted">
+	<header th:insert="layout/layout :: frag-header"></header>
+	<main>
 
-	  </div>
-	</div>
-  </section>
+		<section>
 
-</main>
-<footer th:replace="layout/Base2 :: frag-footer"></footer>	
+			<nav aria-label="breadcrumb" class="margin-20">
+				<ol class="breadcrumb">
+					<li sec:authorize="hasRole('ROLE_ADMINISTRATOR')"
+						class="breadcrumb-item"><a href="#">Inicio</a></li>
+					<li sec:authorize="hasRole('ROLE_ADMINISTRATOR')"
+						class="breadcrumb-item"><a th:href="@{/clients}">Clientes</a></li>
+					<li sec:authorize="hasRole('ROLE_ADMINISTRATOR')"
+						th:if="${client.id}==0" class="breadcrumb-item active"
+						aria-current="page">Nuevo</li>
+					<li th:unless="${client.id}==0" class="breadcrumb-item"><a
+						th:href="@{'/clients/godetail/'+${client.id}}">Datos
+							Personales</a></li>
+					<li th:unless="${client.id}==0" class="breadcrumb-item active"
+						aria-current="page">Editar Datos</li>
+				</ol>
+			</nav>
+
+			<div class="card text-center margin-20">
+				<div class="card-header">Clientes</div>
+				<div class="card-body" style="text-align: left;">
+
+					<form th:action="@{/clients/save}" th:object="${client}"
+						method="post" class="row g-3 needs-validation" novalidate>
+						<div class="col-md-1">
+							<label for="id" class="form-label">id</label> <input
+								type="number" class="form-control" th:field="*{id}" required>
+							<div class="valid-feedback">Looks good!</div>
+						</div>
+						<div class="col-md-3">
+							<label for="lastName" class="form-label">Apellido</label> <input
+								type="text" class="form-control" th:field="*{lastname}" required>
+							<div class="valid-feedback">Looks good!</div>
+						</div>
+						<div class="col-md-2">
+							<label for="firstName" class="form-label">Nombre</label> <input
+								type="text" class="form-control" th:field="*{firstname}"
+								required>
+							<div class="valid-feedback">Looks good!</div>
+						</div>
+
+						<div class="col-md-2">
+							<label for="cellphone" class="form-label">Celular</label> <input
+								type="text" class="form-control" th:field="*{cellphone}"
+								required>
+							<div class="valid-feedback">Looks good!</div>
+						</div>
+
+						<div class="col-md-2">
+							<label for="direction" class="form-label">Direccion</label> <input
+								type="text" class="form-control" th:field="*{direction}"
+								required>
+							<div class="valid-feedback">Looks good!</div>
+						</div>
+
+						<div class="col-12" style="text-align: center;">
+							<button class="btn btn-success" type="submit">
+								<i class="fas fa-save"></i> Salvar
+							</button>
+							<a th:if="${client.id}==0" class="btn btn-danger"
+								th:href="@{/clients}" role="button">Cancelar</a> <a
+								th:unless="${client.id}==0" class="btn btn-danger"
+								th:href="@{'/clients/godetail/'+${client.id}}" role="button">Cancelar</a>
+						</div>
+					</form>
+
+				</div>
+				<div class="card-footer text-muted"></div>
+			</div>
+		</section>
+
+	</main>
+	<footer th:replace="layout/Base2 :: frag-footer"></footer>
 
 </body>
 </html>
