@@ -19,21 +19,14 @@ public class InitUser implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		BCryptPasswordEncoder bcpe = new BCryptPasswordEncoder();
+		
 		// ROLE_XXXXX	-> Segmento Objetivo
 		// ACCESS_YYYYY
 		
 		// SIEMPRE DEBE DE ESTAR COMENTADO
 		// SOLO SE DEBE DESBLOQUEAR CUANDO SE CREAN USUARIO
-		/*User carlos = new User();
-		carlos.setUsername("carlos");
-		carlos.setPassword(bcpe.encode("carlos"));	
-		carlos.setSegment(Segment.CLIENT);
-		carlos.setIdSegment(1);
-		carlos.addAuthority("ROLE_CLIENT");
-		carlos.addAuthority("ACCESS_VIEW_MATRI");
-		carlos.addAuthority("ACCESS_EDIT_MATRI");
-		userRepository.save(carlos);
-		
+		/*
+
 		User maria = new User("maria", bcpe.encode("maria"), Segment.CLIENT, 2);
 		maria.addAuthority("ROLE_CLIENT");
 		maria.addAuthority("ACCESS_VIEW_MATRI");

@@ -1,50 +1,69 @@
 <!doctype html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org" 
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="layout/layout :: frag-head">
-	<title>Codega project</title>
+<title>¡Bienvenidos a Codega!</title>
 </head>
 <body>
 
-<header th:insert="layout/layout :: frag-header"></header>
-<main>
-	
-  <section class="container py-4" sec:authorize="isAnonymous()">
-  	<img th:src="@{/images/Codega.jpg}" id="imagen" class="card-img-top img-responsive" alt="..."/>
-  	<div class="p-5 mb-4 bg-light rounded-3">
-      <div class="container-fluid py-5 text-center">
-        <h1 class="display-5 fw-bold"> Bienvenido a nuestro proyecto </h1>
-        <h2 class="display-5 fw-bold"> Integrantes: </h2>
-        
-        <p class="display-5 fw-bold"> Anthony </p>
-        <p class="display-5 fw-bold"> Brian </p>
-        <p class="display-5 fw-bold"> Juan </p>
-   
-      </div>
-    </div>
-  	
-  </section>
-  
-    <section class="container py-4" sec:authorize="isAuthenticated()">
-  		<div sec:authorize="hasRole('ROLE_SELLER')" class="p-5 mb-4 bg-light rounded-3">
-		      <div class="container-fluid py-5 text-center">
-		        <h1 class="display-5 fw-bold"> Perfil </h1>
-		         
-		        <p class="display-5 fw-bold"> Nombre: <span th:text="${seller.firstName}"></span></p>
-		        <p class="display-5 fw-bold"> Apellido: <span th:text="${seller.lastName}"></span> </p>
-		        <p class="display-5 fw-bold"> Segment: <span th:text="${segment}">Segment</span> </p>
-		   
-		      </div>
-		 
-		</div>
-		<div sec:authorize="hasRole('ROLE_CLIENT')" class="alert alert-success" role="alert">
-	 		 <p>hola</p>
-		</div>
-  	
-  	</section>
+	<header th:insert="layout/layout :: frag-header"></header>
+	<main>
 
-</main>
-<footer th:replace="layout/layout :: frag-footer"></footer>	
+		<section class="container py-4" sec:authorize="isAnonymous()">
+			<img th:src="@{/images/Codega.jpg}" id="imagen"
+				class="card-img-top img-responsive" alt="..." />
+			<div class="p-5 mb-4 bg-light rounded-3">
+				<div class="container-fluid py-5 text-center">
+					<h1 class="display-5 fw-bold">Bienvenido a nuestro proyecto</h1>
+					<h2 class="display-5 fw-bold">Integrantes:</h2>
+
+					<p class="display-5 fw-bold">Anthony</p>
+					<p class="display-5 fw-bold">Brian</p>
+					<p class="display-5 fw-bold">Juan</p>
+
+				</div>
+			</div>
+
+		</section>
+
+		<section class="container py-4" sec:authorize="isAuthenticated()">
+			<div sec:authorize="hasRole('ROLE_SELLER')"
+				class="p-5 mb-4 bg-light rounded-3">
+				<div class="container-fluid py-5 text-center">
+					<h1 class="display-5 fw-bold">Perfil</h1>
+
+					<p class="display-5 fw-bold">
+						Nombre: <span th:text="${seller.firstName}"></span>
+					</p>
+					<p class="display-5 fw-bold">
+						Apellido: <span th:text="${seller.lastName}"></span>
+					</p>
+					<p class="display-5 fw-bold">
+						Segment: <span th:text="${segment}">Segment</span>
+					</p>
+
+				</div>
+
+			</div>
+			<div sec:authorize="hasRole('ROLE_CLIENT')"
+				class="alert alert-success" role="alert">
+				<span
+					th:text="${'Welcome ' + segment + ' ' + client.firstname + ' ' + client.lastname}"></span>
+			</div>
+			<div sec:authorize="hasRole('ROLE_SELLER')"
+				class="alert alert-success" role="alert">
+				<span
+					th:text="${'Welcome ' + segment + ' ' + seller.firstName + ' ' + seller.lastName}"></span>
+			</div>
+			<div sec:authorize="hasRole('ROLE_ADMINISTRATOR')"
+				class="alert alert-success" role="alert">
+				<span>Welcome Admin</span>
+			</div>
+
+		</section>
+
+	</main>
+	<footer th:replace="layout/layout :: frag-footer"></footer>
 
 </body>
 </html>
