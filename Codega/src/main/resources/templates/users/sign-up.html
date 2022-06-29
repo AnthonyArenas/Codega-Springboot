@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: frag-head">
+	<meta charset="ISO-8859-1">
+	<title>User - Sign-up</title>
+</head>
+<body>
+
+<header th:insert="layout/layout :: frag-header"></header>
+<main>
+	
+  <section>
+  
+  	<nav aria-label="breadcrumb" class="margin-20">
+	  <ol class="breadcrumb">
+	    <li class="breadcrumb-item"><a href="#">Home</a></li>
+	    <li class="breadcrumb-item"><a th:href="@{/}">User</a></li>
+	    <li class="breadcrumb-item active" aria-current="page">Sign-up</li>
+	  </ol>
+	</nav>
+	
+	<div class="card text-center margin-20">
+	  <div class="card-header">
+	    Sign-up
+	  </div>
+	  <div class="card-body" style="text-align: left;">
+	  	
+	  	<form th:action="@{/users/register-user}" th:object="${user}" method="post" class="row g-3 needs-validation" novalidate>
+		  <div class="col-md-3">
+		    <label for="username" class="form-label">Username</label>
+		    <input type="text" class="form-control" th:field="*{username}" required>
+		    <div class="valid-feedback">
+		      Looks good!
+		    </div>
+		  </div>
+		  <div class="col-md-3">
+		    <label for="password" class="form-label">Password</label>
+		    <input type="password" class="form-control" th:field="*{password}" required>
+		    <div class="valid-feedback">
+		      Looks good!
+		    </div>
+		  </div>
+		  
+		  <div class="col-md-3">
+		    <label for="segment" class="form-label">Segment</label>
+		    <select class="form-select" th:field="*{segment}" required>
+		      <option selected disabled value="">Choose...</option>
+		      <option th:each="segment : ${segments}" th:value="${segment}" th:text="${segment}">...</option>
+		    </select>
+		    <div class="valid-feedback">
+		      Looks good!
+		    </div>
+		  </div>
+		  <div class="col-md-2">
+		    <label for="idSegment" class="form-label">Id Segment</label>
+		    <input type="text" class="form-control" th:field="*{idSegment}" required>
+		    <div class="valid-feedback">
+		      Looks good!
+		    </div>
+		  </div>
+
+		  <div class="col-12" style="text-align: center;">
+		    <button class="btn btn-success" type="submit"><i class="fas fa-save"></i> Register</button>
+		  </div>
+		</form>
+	  
+	  </div>
+	  <div class="card-footer text-muted">
+
+	  </div>
+	</div>
+  </section>
+
+</main>
+<footer th:replace="layout/layout :: frag-footer"></footer>	
+
+</body>
+</html>
