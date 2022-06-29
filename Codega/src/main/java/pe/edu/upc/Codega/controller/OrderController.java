@@ -13,14 +13,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+
+import pe.edu.upc.Codega.business.crud.ClientService;
 import pe.edu.upc.Codega.business.crud.ClothingService;
 import pe.edu.upc.Codega.business.crud.OrderDetailService;
 import pe.edu.upc.Codega.business.crud.OrderService;
 import pe.edu.upc.Codega.business.crud.SaleService;
 import pe.edu.upc.Codega.model.entity.Clothing;
+import pe.edu.upc.Codega.model.entity.Client;
 import pe.edu.upc.Codega.model.entity.Order;
 import pe.edu.upc.Codega.model.entity.OrderDetail;
 import pe.edu.upc.Codega.model.entity.Sale;
+import pe.edu.upc.Codega.utils.UserAuthentication;
 
 
 @Controller
@@ -29,13 +33,19 @@ import pe.edu.upc.Codega.model.entity.Sale;
 public class OrderController {
 	
 	@Autowired
-	public OrderService orderService;
+	private OrderService orderService;
 	
 	@Autowired
-	public SaleService saleService;
+	private SaleService saleService;
 	
 	@Autowired
-	public OrderDetailService orderDetailService;
+	private ClientService clientService;
+	
+	@Autowired
+	private OrderDetailService orderDetailService;
+	
+	@Autowired
+	private UserAuthentication userAuthentication;
 	
 	
 	@Autowired
@@ -68,27 +78,32 @@ public class OrderController {
 	
 	@PostMapping("savenew")
 	public String saveOrder(Model model, @ModelAttribute("order") Order order) {
-		float total;
-		try {
-		
-				Optional<Clothing> optional = clothingService.findById(idNew);
-				orderService.create(order);
-				OrderDetail orderDetail = new OrderDetail();
-				model.addAttribute("orderDetail", orderDetail);
-				Sale sale = new Sale();
-				model.addAttribute("sale", sale);
-				orderDetail.setOrder(order);
-				orderDetail.setClothing(optional.get());
-				total = optional.get().getPrice() * order.getQuantity();
-				orderDetail.setTotal(total);
-				orderDetailService.create(orderDetail);
-				sale.setOrderDetail(orderDetail);
-				saleService.create(sale);
-				
-			 
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if(userAuthentication.isAuthenticated()) {
+			Integer id = userAuthentication.getIdSegment();
+				float total;
+				try {
+						
+							
+							Optional<Clothing> optional = clothingService.findById(idNew);
+				            Optional<Client> optionalClient = clientService.findById(id);
+				            order.setClient(optionalClient.get());
+							orderService.create(order);
+							OrderDetail orderDetail = new OrderDetail();
+							model.addAttribute("orderDetail", orderDetail);
+							Sale sale = new Sale();
+							model.addAttribute("sale", sale);
+							orderDetail.setOrder(order);
+							orderDetail.setClothing(optional.get());
+							total = optional.get().getPrice() * order.getQuantity();
+							orderDetail.setTotal(total);
+							orderDetailService.create(orderDetail);
+							sale.setOrderDetail(orderDetail);
+							saleService.create(sale);			
+					 
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 		}
 		
 		return "redirect:/orderDetails";

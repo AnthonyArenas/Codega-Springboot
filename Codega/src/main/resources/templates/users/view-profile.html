@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" 
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: frag-head">
+	<title>Codega</title>
+</head>
+<body>
+
+<header th:insert="layout/layout :: frag-header"></header>
+<main>
+	
+  <section class="container py-4">
+  	<div class="p-5 mb-4 bg-light rounded-3">
+      <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold"><i class="fas fa-chalkboard-teacher"></i> Profile</h1>
+        
+        <p class="col-md-8 fs-4">Username: <span sec:authentication="name">Username</span></p>
+        <p class="col-md-8 fs-4">Roles: <span sec:authentication="principal.authorities">[ROLE_CLIENT, ROLE_SELLER]</span> </p>
+        <p class="col-md-8 fs-4">Segment: <span th:text="${segment}">Segment</span></p>
+        
+        <div sec:authorize="hasRole('ROLE_SELLER')">
+        <p class="col-md-8 fs-4" > Id: <span th:text="${seller.id}"></span> </p>
+        <p class="col-md-8 fs-4" > Nombres: <span th:text="${seller.firstName + ' ' + seller.lastName}"></span> </p>
+        </div>
+        <p sec:authorize="hasRole('ROLE_CLIENT')" class="col-md-8 fs-4" >
+        	Nombres: <span th:text="${client.firstname + ' ' + client.lastname}"></span> 
+        </p>
+        
+  
+      </div>
+    </div>
+  	
+  </section>
+
+</main>
+<footer th:replace="layout/layout :: frag-footer"></footer>	
+
+</body>
+</html>

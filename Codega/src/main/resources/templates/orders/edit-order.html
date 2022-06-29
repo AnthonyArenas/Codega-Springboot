@@ -11,12 +11,7 @@
 	
   <section>
   
-	<nav aria-label="breadcrumb" class="margin-20">
-	  <ol class="breadcrumb">
-	    <li class="breadcrumb-item"><a th:href="@{/orders}">Orders</a></li>
-	    <li class="breadcrumb-item active" aria-current="page">Editar</li>
-	  </ol>
-	</nav>
+	
   
 	<div class="card text-center margin-20">
 	  <div class="card-header">
@@ -42,6 +37,32 @@
 		    </div>
 		  </div>
 		  
+		  <div class="col-md-3">
+		    <label for="card" class="form-label">Credit Card</label>
+		    <input type="text" class="form-control" th:field="*{card}" required>
+		    <div class="valid-feedback">
+		      Looks good!
+		    </div>
+		  </div>
+		  
+		  <div class="col-md-3">
+		    <label for="code" class="form-label">Cvv</label>
+		    <input type="text" class="form-control" th:field="*{code}" required>
+		    <div class="valid-feedback">
+		      Looks good!
+		    </div>
+		  </div>
+		  
+		  
+		  
+		  <div class="col-md-3">
+		    <label for="type" class="form-label">Type of card</label>
+		    <input type="text" class="form-control" th:field="*{type}" required>
+		    <div class="valid-feedback">
+		      Looks good!
+		    </div>
+		  </div>
+		  
 		  
 		  <div class="col-md-2">
 		    <label for="total" class="form-label">Total</label>
@@ -50,6 +71,7 @@
 		      Looks good!
 		    </div>
 		  </div>
+		  
 		  
 		    
 		

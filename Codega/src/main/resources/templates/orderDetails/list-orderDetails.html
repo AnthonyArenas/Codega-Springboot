@@ -11,12 +11,7 @@
 	
   <section>
   
-	<nav aria-label="breadcrumb" class="margin-20">
-	  <ol class="breadcrumb">
-	    <li class="breadcrumb-item"><a th:href="@{/products}">Products</a></li>
-	    <li class="breadcrumb-item active" aria-current="page">Home</li>
-	  </ol>
-	</nav>
+	
   
 	<div class="card margin-20">
 	  <div class="card-header text-center">
@@ -44,6 +39,9 @@
 		        		</div>
 		        		
 		        	</div>
+		        	Numero de targeta: <span th:text="${orderDetail.order.card}"></span>
+		        	Tipo de targeta:<span th:text="${orderDetail.order.type}"></span>
+		        	
 		        	y el total a pagar es de <span th:text="${orderDetail.total}"></span> soles
 		        	
 		        </p> 
