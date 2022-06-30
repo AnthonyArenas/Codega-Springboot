@@ -59,7 +59,7 @@
 		    <label for="seller" class="form-label">Seller</label>
 		    <select class="form-select" th:field="*{seller}" required>
 		      <option selected disabled value="">Choose...</option>
-		      <option th:each="seller : ${sellers}" th:value="${seller.id}" th:text="${seller.username}">...</option>
+		      <option th:each="seller : ${sellers}" th:value="${seller.id}" th:text="${seller.firstName}">...</option>
 		    </select>
 		    <div class="invalid-feedback">
 		      Please select a valid state.
@@ -67,7 +67,7 @@
 		  </div>
 		  
 		  <div class="col-12" style="text-align: center;">
-		    <button class="btn btn-success" type="submit"><i class="fas fa-save"></i> Save</button>
+		    <button class="btn btn-success" type="submit"><i class="fas fa-save"></i> Guardar Lista</button>
 		  </div>
 		</form>
 	  

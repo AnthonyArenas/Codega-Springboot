@@ -10,8 +10,8 @@
 <main>
 	
   <section class="container py-4">
-  	<div class="p-5 mb-4 bg-light rounded-3">
-      <div class="container-fluid py-5">
+  	<div class="p-5 mb-4 bg-light rounded-3" >
+      <div class="container-fluid py-5" style="background-color: rgb(192, 211, 118);">
         <h1 class="display-5 fw-bold"><i class="fas fa-chalkboard-teacher"></i> Profile</h1>
         
         <p class="col-md-8 fs-4">Username: <span sec:authentication="name">Username</span></p>
@@ -25,6 +25,11 @@
         <p sec:authorize="hasRole('ROLE_CLIENT')" class="col-md-8 fs-4" >
         	Nombres: <span th:text="${client.firstname + ' ' + client.lastname}"></span> 
         </p>
+        
+        <div class="col-12" style="text-align: Center">
+		    
+		    <a class="btn btn-warning" th:href="@{/orders}" role="button">Editar Perfil</a>
+		  </div>
         
   
       </div>
