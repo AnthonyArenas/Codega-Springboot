@@ -1,5 +1,6 @@
 package pe.edu.upc.Codega.business.crud.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -46,5 +47,17 @@ public class UserServiceImpl implements UserService {
 		// Grabar el usuario			
 		return Optional.of(userRepository.save(user)); 
 	}
+
+	/*@Override
+	public List<User> getAllClients() {
+		return userRepository.getAllClients();
+	}
+
+	@Override
+	public List<User> getAllSellers() {
+		return userRepository.getAllSellers();
+	}*/
+	
+	
 
 }

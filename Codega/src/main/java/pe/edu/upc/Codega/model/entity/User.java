@@ -47,6 +47,8 @@ public class User {
 	@Column(name = "id_segment", nullable = false)
 	private Integer idSegment;
 	
+	
+	
 	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Authority> authorities;
 	
@@ -113,4 +115,6 @@ public class User {
 	public void setIdSegment(Integer idSegment) {
 		this.idSegment = idSegment;
 	}
+
+	
 }

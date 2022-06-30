@@ -57,9 +57,25 @@ public class ListClothingController {
 	@GetMapping("{id}/view")
 	public String viewlistListClothing(Model model, @PathVariable("id") Integer id) {
 		try {
+				List<ListClothing> listClothing= listClothingService.findByCategorie(id);
+				model.addAttribute("listClothing", listClothing);
+						
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "listClothing/list-listClothing";
+	}
+	
+	/*@GetMapping("{id}/view")
+	public String viewlistListClothing(Model model, @PathVariable("id") Integer id) {
+		try {
 			if(listClothingService.existsById(id)) {
-				Optional<ListClothing> optional = listClothingService.findById(id);
-				model.addAttribute("listClothing", optional.get());
+				//Optional<ListClothing> optional = listClothingService.findById(id);
+				//model.addAttribute("listClothing", optional.get());
+				List<ListClothing> listClothing= listClothingService.findByCategorie(id);
+				model.addAttribute("listClothing", listClothing);
 			}
 			else {
 				return "redirect:/inventory";
@@ -70,7 +86,7 @@ public class ListClothingController {
 		}
 		
 		return "inventory/view-list-clothing";
-	}
+	}*/
 	
 	@GetMapping("new")	//	/ListClothings/new
 	public String newListClothing(Model model) {

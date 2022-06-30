@@ -1,6 +1,7 @@
 package pe.edu.upc.Codega.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import pe.edu.upc.Codega.business.crud.OrderDetailService;
+import pe.edu.upc.Codega.business.crud.OrderService;
 import pe.edu.upc.Codega.business.logic.OrderDetailBsService;
+import pe.edu.upc.Codega.model.entity.Order;
 import pe.edu.upc.Codega.model.entity.OrderDetail;
 import pe.edu.upc.Codega.utils.UserAuthentication;
 
@@ -23,6 +26,10 @@ public class OrderDetailController {
 	
 	@Autowired
 	public OrderDetailService orderDetailService;
+	
+	@Autowired
+	public OrderService orderService;
+	
 	@Autowired
 	public OrderDetailBsService orderDetailBsService;
 	
@@ -30,6 +37,31 @@ public class OrderDetailController {
 	private UserAuthentication userAuthentication;
 	
 
+	@GetMapping
+	public String getOrderDetails(Model model) {
+		
+		if(userAuthentication.isAuthenticated()) {
+			Integer id = userAuthentication.getIdSegment();
+		
+			try {
+			
+				//List<OrderDetail> orderDetails= orderDetailService.findByOrder(id);
+				//model.addAttribute("orderDetails", orderDetails);
+				
+				List<OrderDetail> orderDetails= orderDetailService.findByClient(id);
+				model.addAttribute("orderDetails", orderDetails);
+		
+	
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return "orderDetails/list-orderDetails";
+		}
+		return "orderDetails/list-orderDetails";
+	}
+	
+	
 	/*@GetMapping
 	public String getOrderDetails(Model model) {
 		
@@ -49,7 +81,7 @@ public class OrderDetailController {
 		return "orderDetails/list-orderDetails";
 	}*/
 	
-	@GetMapping
+	/*@GetMapping
 	public String getOrderDetails(Model model) {
 		
 		
@@ -66,6 +98,6 @@ public class OrderDetailController {
 			return "orderDetails/list-orderDetails";
 		
 	
-	}
+	}*/
 	
 }

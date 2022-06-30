@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "orders", indexes = {@Index(columnList = "pick_up_way", name = "orders_index_pick_up_way")})
+@Table(name = "orders", indexes = {@Index(columnList = "pick_up_way", name = "orders_index_pick_up_way"), @Index(columnList = "client_id", name = "orders_index_client_id")})
 
 public class Order {
 	@Id
