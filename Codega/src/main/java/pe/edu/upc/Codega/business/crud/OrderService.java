@@ -2,7 +2,7 @@ package pe.edu.upc.Codega.business.crud;
 
 import java.util.List;
 
-import pe.edu.upc.Codega.model.entity.Client;
+
 import pe.edu.upc.Codega.model.entity.Order;
 
 public interface OrderService extends CrudService<Order, Integer>{
