@@ -20,6 +20,7 @@ public class SaleController {
 	@Autowired
 	public SaleService saleService;
 	
+	
 
 	@GetMapping
 	public String getSales(Model model) {
@@ -33,5 +34,23 @@ public class SaleController {
 		}
 		return "sales/list-sales";
 	}
+	
+	/*@GetMapping
+	public String getSales(Model model) {
+		
+		if(userAuthentication.isAuthenticated()) {
+			Integer id = userAuthentication.getIdSegment();
+			try {
+				List<Sale> sales= saleService.findBySeller(id);
+				model.addAttribute("sales", sales);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return "sales/list-sales";
+			
+		}
+		return "sales/list-sales";
+	}*/
 	
 }

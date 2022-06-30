@@ -30,6 +30,9 @@ public class Client {
 	@Column(name = "direction", nullable = false, length = 100)
 	private String direction;
 	
+	@Column(name = "city", nullable = false, length = 100)
+	private String city;
+	
 	@OneToMany(mappedBy = "client")
 	private List<Order> orders;
 	
@@ -90,6 +93,18 @@ public class Client {
 
 	public void setOrders(List<Order> orders) {
 		this.orders = orders;
+	}
+
+
+
+
+	public String getCity() {
+		return city;
+	}
+
+
+	public void setCity(String city) {
+		this.city = city;
 	}
 	
 	

@@ -17,4 +17,7 @@ public interface ListClothingRepository extends JpaRepository<ListClothing, Inte
 	
 	@Query(value = "SELECT pe FROM ListClothing pe WHERE pe.categorie.id = :id")
 	List<ListClothing> findByCategorie(@Param("id") Integer id);
+	
+	@Query(value = "SELECT pe FROM ListClothing pe WHERE pe.seller.id = :id")
+	List<ListClothing> findBySeller(@Param("id") Integer id);
 }

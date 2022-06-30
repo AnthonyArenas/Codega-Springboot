@@ -21,6 +21,7 @@ import pe.edu.upc.Codega.model.entity.Categories;
 import pe.edu.upc.Codega.model.entity.Clothing;
 import pe.edu.upc.Codega.model.entity.ListClothing;
 import pe.edu.upc.Codega.model.entity.Seller;
+import pe.edu.upc.Codega.utils.UserAuthentication;
 
 
 @Controller
@@ -38,17 +39,26 @@ public class ListClothingController {
 	@Autowired
 	private SellerService sellerService; 
 	
+	@Autowired
+	private UserAuthentication userAuthentication;
+	
 	
 	
 	@GetMapping
 	public String listListClothings(Model model) {
 		
-		try {
-			List<ListClothing> listClothing = listClothingService.getAll();
-			model.addAttribute("listClothing", listClothing);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if(userAuthentication.isAuthenticated()) {
+			Integer id = userAuthentication.getIdSegment();
+			try {
+				List<ListClothing> listClothing = listClothingService.findBySeller(id);
+				model.addAttribute("listClothing", listClothing);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			return "listClothing/list-listClothing";
+			
 		}
 		
 		return "listClothing/list-listClothing";

@@ -24,14 +24,17 @@
 		      <div class="card-body">
 		      	<img th:src = "${clothing.urlToImage}" class="card-img-top img-responsive" alt="...">
 		        
-		        <p class="card-text"> 
-		        	
-		        	Marca: <span th:text="${clothing.model}"></span> <br>
-		        	Descripcion: <span th:text="${clothing.description}"></span> <br> 
-		        	Precio: <span th:text="${clothing.price}"></span> <br>
+		        <p class="card-text"> 	        	
+		        	Pertenece al modelo <span th:text="${clothing.model}"></span>    
+		        </p>
+		        <p class="card-text"> 		        	 	
+		        	Su descripcion: <span th:text="${clothing.description}"></span>  
+		        </p>
+		          <p class="card-text">  
+		        	Cuesta <span th:text="${clothing.price}"></span> soles
 		        </p>
 		        <a class="btn btn-success" th:href="@{'/orders/' + ${clothing.id} + '/new'}" role="button"><i class="fas fa-shopping-cart"></i> Comprar</a>
-		       	<a class="btn btn-danger" th:href="@{/inventory}" role="button"><i class="fas fa-minus-circle"></i> Regresar</a>
+		       
 		      </div>
 		    </div>
 		  </div>
