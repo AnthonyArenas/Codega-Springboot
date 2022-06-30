@@ -15,8 +15,10 @@ import pe.edu.upc.Codega.model.entity.Categories;
 import pe.edu.upc.Codega.model.entity.Client;
 import pe.edu.upc.Codega.model.entity.ListClothing;
 import pe.edu.upc.Codega.model.entity.Order;
+import pe.edu.upc.Codega.model.entity.Seller;
 import pe.edu.upc.Codega.model.repository.CategoriesRepository;
 import pe.edu.upc.Codega.model.repository.ListClothingRepository;
+import pe.edu.upc.Codega.model.repository.SellerRepository;
 
 @Service
 public class ListClothingServiceImpl implements ListClothingService {
@@ -26,6 +28,9 @@ public class ListClothingServiceImpl implements ListClothingService {
 	
 	@Autowired
 	private  CategoriesRepository categoriesRepository;
+	
+	@Autowired
+	private  SellerRepository sellerRepository;
 	
 	@Override
 	public JpaRepository<ListClothing, Integer> getJpaRepository() {
@@ -45,6 +50,17 @@ public class ListClothingServiceImpl implements ListClothingService {
 			Optional<Categories> optional = categoriesRepository.findById(id);
            System.out.print("infomracion" + id + optional.get().getName());
 			return listClothingRepository.findByCategorie(optional.get().getId());
+		}else {
+		
+			return new ArrayList<ListClothing>();
+		}
+	}
+
+	@Override
+	public List<ListClothing> findBySeller(Integer id) throws Exception {
+		if(sellerRepository.existsById(id)) {
+			Optional<Seller> optional = sellerRepository.findById(id);
+			return listClothingRepository.findBySeller(optional.get().getId());
 		}else {
 		
 			return new ArrayList<ListClothing>();

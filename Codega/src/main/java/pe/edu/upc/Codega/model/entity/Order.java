@@ -40,6 +40,9 @@ public class Order {
 	@Column(name = "type",length = 15, nullable = false)
 	private String type;
 	
+	@Column(name = "date_card",length = 30, nullable = false)
+	private String dateCard;
+	
 	
 	@ManyToOne
 	@JoinColumn(name = "client_id")
@@ -129,12 +132,14 @@ public class Order {
 	public void setType(String type) {
 		this.type = type;
 	}
-	
-	
 
-	
-	
-	
-	 
+	public String getDateCard() {
+		return dateCard;
+	}
+
+	public void setDateCard(String dateCard) {
+		this.dateCard = dateCard;
+	}
+ 
 }
 

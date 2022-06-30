@@ -19,6 +19,28 @@
 	  </div>
 	  <div class="card-body">
 	  
+	  
+	  	<div th:each = "sale : ${sales}" class="col-sm-3 margin-b-10">
+		    <div class="card">
+		      <div class="card-body"> 
+		          
+   
+		        <p class="text-center" th:each = "orderDetail : ${sale.orderDetails}">
+		        	El total a pagar es de <span th:text="${orderDetail.total}"></span> soles
+		        </p>  
+		        
+		        
+   
+		      </div>
+		    </div>
+		  </div>
+	  
+	  
+	  
+	  
+	  
+	  
+	  
 	 	<div class="row">
 		  <div th:each="sale : ${sales}" class="col-sm-3 margin-b-10">
 		    <div class="card">

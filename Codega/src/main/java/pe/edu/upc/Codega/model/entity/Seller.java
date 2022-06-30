@@ -21,11 +21,6 @@ public class Seller {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(name = "username", length = 40, nullable = false)
-	private String username;
-	
-	@Column(name = "password", length = 40, nullable = false)
-	private String password;
 	
 	@Column(name = "last_name", length = 40, nullable = false)
 	private String lastName;
@@ -36,16 +31,17 @@ public class Seller {
 	@Column(name = "email", length = 40, nullable = false)	
 	private String email;
 	
-	/*@OneToMany(mappedBy = "sellers", cascade = CascadeType.ALL)
-	private List<Publications> publications;*/
+	@Column(name = "cellphone", nullable = false, length = 20)
+	private String cellphone;
 	
+	@Column(name = "city", nullable = false, length = 100)
+	private String city;
+	
+
 	@OneToMany(mappedBy = "seller", cascade = CascadeType.ALL)
 	private List<ListClothing> list_clothing;
 	
 
-	
-	/*@OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
-	private List<ListClothing> users;*/
 	
 	
 	public Integer getId() {
@@ -57,21 +53,6 @@ public class Seller {
 		this.id = id;
 	}
 
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
 	
 	public String getEmail() {
 		return email;
@@ -99,8 +80,7 @@ public class Seller {
 
 
 	public Seller() {
-		//publications = new ArrayList<>();
-        //users = new ArrayList<>();
+
 		list_clothing = new ArrayList<>();
 		
 	}
@@ -112,20 +92,30 @@ public class Seller {
 	public void setList_clothing(List<ListClothing> list_clothing) {
 		this.list_clothing = list_clothing;
 	}
-	
 
-	/*public List<Publications> getPublications() {
-		return publications;
+
+	public String getCellphone() {
+		return cellphone;
 	}
 
-	public void setPublications(List<Publications> publications) {
-		this.publications = publications;
-	}*/
 
+	public void setCellphone(String cellphone) {
+		this.cellphone = cellphone;
+	}
+
+
+	public String getCity() {
+		return city;
+	}
+
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+	
 	
 	
 
-	
 	
 
 }
