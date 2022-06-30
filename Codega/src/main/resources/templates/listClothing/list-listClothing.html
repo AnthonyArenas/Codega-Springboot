@@ -28,7 +28,7 @@
 								<p class="card-text" th:text="${list.description}"></p>
 								<a class="btn btn-warning" th:href="@{'/listClothing/' + ${list.id} + '/edit'}" role="button" sec:authorize="hasRole('ROLE_SELLER')"> <i class="fas fa-edit"></i> </a>
 		      					<a class="btn btn-danger" th:href="@{'/listClothing/' + ${list.id} + '/del'}" role="button" sec:authorize="hasRole('ROLE_SELLER')"> <i class="fas fa-trash-alt"></i> </a>
-		      					<a class="btn btn-danger" th:href="@{'/inventory/' + ${list.id} + '/list-clothing'}" role="button" sec:authorize="hasRole('ROLE_CLIENT')"> See clothes </a>
+		      					<a class="btn btn-danger" th:href="@{'/inventory/' + ${list.id} + '/list-clothing'}" role="button" sec:authorize="hasAnyRole('ROLE_CLIENT', 'ROLE_SELLER')"> See clothes </a>
 							</div>
 						</div>
 					</div>
