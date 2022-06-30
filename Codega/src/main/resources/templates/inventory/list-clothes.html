@@ -7,12 +7,12 @@
 <body>
 
 <header th:insert="layout/layout :: frag-header"></header>
-<main>
+<main style="background-color: rgb(153, 200, 251)">
 	
    
   		<section style="display: flex; justify-content: center">
   			  <div class="card-footer text-muted">
-	    <a class="btn btn-primary" th:href="@{/inventory/new}" role="button" sec:authorize="hasAnyRole('ROLE_SELLER','ROLE_ADMINISTRATOR')"> <i class="fas fa-plus"></i> Agregar Prenda</a>
+	    <a class="btn btn-primary" th:href="@{/inventory/new}" role="button" sec:authorize="hasAnyRole('ROLE_SELLER')"> <i class="fas fa-plus"></i> Agregar Prenda</a>
 	  </div>
 			<div class="row row-cols-1 row-cols-md-4 g-4" style="width: 80%">
 				<div th:each="clothing : ${clothes}">

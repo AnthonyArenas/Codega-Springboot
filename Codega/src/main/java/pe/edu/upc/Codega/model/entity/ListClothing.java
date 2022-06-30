@@ -20,9 +20,7 @@ import javax.persistence.Table;
 public class ListClothing {
 	
 	public ListClothing() {
-		//seller = new Seller();
-		//users = new Users();
-		//categories = new Categories();
+
 		clothing = new ArrayList<>();
 	}
 	
@@ -35,15 +33,6 @@ public class ListClothing {
 	}
 
 
-
-
-	/*public Users getUsers() {
-		return users;
-	}
-
-	public void setUsers(Users users) {
-		this.users = users;
-	}*/
 
 	public String getName() {
 		return name;
@@ -92,9 +81,7 @@ public class ListClothing {
 	@JoinColumn(name = "categorie_id")
 	private Categories categorie;	// career_id
 	
-	/*@ManyToOne
-	@JoinColumn(name = "users_id")
-	private Users users;*/	// career_id
+
 	
 	@ManyToOne
 	@JoinColumn(name = "seller_id")
@@ -129,18 +116,6 @@ public class ListClothing {
 	}
 	
 
-	/*public Seller getSeller() {
-		return seller;
-	}
-
-	public void setSeller(Seller seller) {
-		this.seller = seller;
-	}*/
-	
-	
-	
-
-	
 
 	
 }

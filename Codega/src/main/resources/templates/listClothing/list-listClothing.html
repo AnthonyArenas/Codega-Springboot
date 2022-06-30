@@ -7,13 +7,13 @@
 <body>
 
 <header th:insert="layout/layout :: frag-header"></header>
-<main>
+<main style="background-color: rgb(153, 200, 251)">
 	
 
 
 
   	<section style="display: flex; justify-content: center">
-  		<div class="card-footer text-muted" sec:authorize="hasRole('ROLE_SELLER')">
+  		<div class="card-footer text-muted" sec:authorize="hasAnyRole('ROLE_SELLER')">
 	    <a class="btn btn-primary" th:href="@{/listClothing/new}" role="button"> <i class="fas fa-plus"></i> Agregar Lista </a>
 	  </div>
 			<div class="row row-cols-1 row-cols-md-4 g-4" style="width: 80%">
@@ -28,7 +28,7 @@
 								<p class="card-text" th:text="${list.description}"></p>
 								<a class="btn btn-warning" th:href="@{'/listClothing/' + ${list.id} + '/edit'}" role="button" sec:authorize="hasRole('ROLE_SELLER')"> <i class="fas fa-edit"></i> </a>
 		      					<a class="btn btn-danger" th:href="@{'/listClothing/' + ${list.id} + '/del'}" role="button" sec:authorize="hasRole('ROLE_SELLER')"> <i class="fas fa-trash-alt"></i> </a>
-		      					<a class="btn btn-danger" th:href="@{'/inventory/' + ${list.id} + '/list-clothing'}" role="button" sec:authorize="hasAnyRole('ROLE_CLIENT', 'ROLE_SELLER')"> See clothes </a>
+		      					<a class="btn btn-danger" th:href="@{'/inventory/' + ${list.id} + '/list-clothing'}" role="button" sec:authorize="hasAnyRole('ROLE_CLIENT', 'ROLE_SELLER','ROLE_ADMINISTRATOR')"> Ver prendas </a>
 							</div>
 						</div>
 					</div>

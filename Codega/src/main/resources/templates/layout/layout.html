@@ -8,10 +8,10 @@
 	<link th:href="@{/css/solid.min.css}" rel="stylesheet" >
 	<title>Codega</title>
 </head>
-<body>
+<body >
 
 <header th:fragment="frag-header">	<!-- Crear un fragmento -->
-	<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgb(145, 255, 200);" >
+	<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgb(0, 128, 255)" >
 		<div class="container-fluid">
 		     
 		    <a class="navbar-brand" href="#"><img th:src="@{/images/Ropasa.jpg}" id="imagen" height=”80” width=100” alt="..."/></a>
@@ -22,26 +22,26 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item" sec:authorize="hasRole('ROLE_SELLER')">
-						<a class="nav-link" aria-current="page" href="/listClothing"  style="color: black;"><i class="fas fa-shopping-cart" style="color: black;"></i> List Clothing </a>
+						<a class="nav-link" aria-current="page" href="/listClothing"  style="color: black;"><i class="fas fa-clipboard-list"></i> List Clothing </a>
 					</li>
 					<li class="nav-item" sec:authorize="hasRole('ROLE_SELLER')">
-						<a class="nav-link" aria-current="page" href="/inventory" style="color: black;"><i class="fas fa-shopping-cart" style="color: black;"></i> Inventory</a>
+						<a class="nav-link" aria-current="page" href="/inventory" style="color: black;"><i class="fas fa-boxes"></i> Inventory</a>
 					</li>
 					
 					<li class="nav-item" sec:authorize="hasRole('ROLE_SELLER')">
-						<a class="nav-link" aria-current="page" href="/sales" style="color: black;"><i class="fas fa-shopping-cart" style="color: black;"></i> Sales</a>
+						<a class="nav-link" aria-current="page" href="/sales" style="color: black;"><i class="fas fa-money-bill-wave"></i> Sales</a>
 					</li>
 					
 					<li class="nav-item" sec:authorize="hasRole('ROLE_ADMINISTRATOR')">
-						<a class="nav-link" aria-current="page" href="/clients" style="color: black;"><i class="fas fa-shopping-cart" style="color: black;"></i> Users</a>
+						<a class="nav-link" aria-current="page" href="/clients" style="color: black;"><i class="fas fa-users" style="color: black;"></i> Users</a>
 					</li>
 					
 					<li class="nav-item" sec:authorize="hasRole('ROLE_ADMINISTRATOR')">
-						<a class="nav-link" aria-current="page" href="/categoriess" style="color: black;"><i class="fas fa-shopping-cart" style="color: black;"></i> New Categorie</a>
+						<a class="nav-link" aria-current="page" href="/categoriess" style="color: black;"><i class="fas fa-star"></i> New Categorie</a>
 					</li>
 					
 					<li class="nav-item" sec:authorize="hasRole('ROLE_CLIENT')">
-						<a class="nav-link" aria-current="page" href="/categoriess" style="color: black;"><i class="fas fa-shopping-cart" style="color: black;"></i> Categories</a>
+						<a class="nav-link" aria-current="page" href="/categoriess" style="color: black;"><i class="fas fa-star"></i> Categories</a>
 					</li>
 					
 					<li class="nav-item" sec:authorize="hasRole('ROLE_CLIENT')">
@@ -70,32 +70,19 @@
 						  </ul>
 					 </div>
 					 
-					
-				
 
-				
-						
-						
-
-					
-					
-					
-				
-					      
-	      
-	  
-			
 				
 			</div>
 		</div>
 	</nav>
 </header>
 <main>
-	<section>
+	<section >
+	
 	</section>
 </main>
-<footer th:fragment="frag-footer">
-	
+<footer th:fragment="frag-footer" >
+
 	<script th:src="@{/js/bootstrap.bundle.min.js}" ></script>
 </footer>
 

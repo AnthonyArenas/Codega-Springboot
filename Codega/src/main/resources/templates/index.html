@@ -7,7 +7,7 @@
 <body>
 
 	<header th:insert="layout/layout :: frag-header"></header>
-	<main>
+	<main style="background-color: rgb(153, 200, 251)">
 
 		<section class="container py-4" sec:authorize="isAnonymous()">
 			<img th:src="@{/images/Codega.jpg}" id="imagen"
@@ -45,7 +45,7 @@
 			<div sec:authorize="hasRole('ROLE_ADMINISTRATOR')"
 				class="alert alert-success" role="alert">
 				<div class="container-fluid py-5 text-center">
-					<h1 class="display-5 fw-bold">Bienvenido Administrador</span></h1>
+					<h1 class="display-5 fw-bold">Bienvenido Administrador</h1>
 
 				</div>
 			</div>
@@ -53,7 +53,7 @@
 		</section>
 
 	</main>
-	<footer th:replace="layout/layout :: frag-footer"></footer>
+	<footer th:replace="layout/layout :: frag-footer" ></footer>
 
 </body>
 </html>
