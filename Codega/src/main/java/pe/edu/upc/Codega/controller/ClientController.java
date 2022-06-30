@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,7 @@ import pe.edu.upc.Codega.business.crud.ClientService;
 import pe.edu.upc.Codega.business.crud.SellerService;
 import pe.edu.upc.Codega.model.entity.Client;
 import pe.edu.upc.Codega.model.entity.Seller;
+import pe.edu.upc.Codega.utils.UserAuthentication;
 
 @Controller
 @RequestMapping("/clients")
@@ -32,6 +34,8 @@ public class ClientController {
 	@Autowired
 	private SellerService sellerService;
 	
+	@Autowired
+	private UserAuthentication userAuthentication;
 
 	@GetMapping
 	public String listClients(Model model) {
@@ -72,32 +76,37 @@ public class ClientController {
 		}
 	}
 	
-	@GetMapping("/godetail/{id}")
-	public String detailClient(@PathVariable int id, Model model) {
+	
+	@GetMapping("{id}/edit")
+	public String editClient(Model model, @PathVariable("id") Integer id) {
+
+			try {
+				Optional<Client> optional = clientService.findById(id);
+				model.addAttribute("client", optional.get());
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return "clients/detail-client";		
+		
+	
+	}
+	
+	@PostMapping("{id}/update")
+	public String updateClient(Model model, @ModelAttribute("client") Client client, @PathVariable("id") Integer id) {
 		try {
-			Client client = clientService.findById(id).get();
-			model.addAttribute("client", client);
-			//List<Label> labels = labelService.findByClientId(id);
-			//model.addAttribute("labels", labels);
+			if(clientService.existsById(id)) {
+				clientService.update(client);
+			}
+			return "users/view-profile";
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "clients/detail-client";
+		return "users/view-profile";
 	}
 	
-	@GetMapping("/goupdate/{id}")
-	public String updateClient(@PathVariable int id, Model model) {
-		try {
-			Client client = clientService.findById(id).get();
-			model.addAttribute("client", client);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return "clients/new-client";
-	}
-	
+
 	@RequestMapping("/delete")
 	public String delete(Map<String,Object> model, @RequestParam(value="id")Integer id) {
 		try {
@@ -114,34 +123,6 @@ public class ClientController {
 		return "redirect:/clients";
 	}
 	
-	// Metodos del Labels
 	
-	/*@GetMapping("/labels/new/{idclient}")
-	public String newLabel(@PathVariable int idclient, Model model) {
-		try {
-			List<Client> clients = new ArrayList<Client>();
-			Client client = clientService.findById(idclient).get();
-			clients.add(client);
-			model.addAttribute("clients", clients);
-			Label label = new Label();
-			label.setClient(client);
-			model.addAttribute("label", label);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return "clients/new-label";
-	}
 	
-	@PostMapping("/labels/save")
-	public String saveLabel(Model model, @ModelAttribute("label") Label label) {
-		try {
-			Label labelSaved = labelService.create(label);
-			return "redirect:/clients/godetail/"+labelSaved.getClient().getId();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return "redirect:/clients";
-		}
-	}*/
 }

@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
 
 import pe.edu.upc.Codega.business.crud.ListClothingService;
 import pe.edu.upc.Codega.model.entity.Categories;
-import pe.edu.upc.Codega.model.entity.Client;
+
 import pe.edu.upc.Codega.model.entity.ListClothing;
-import pe.edu.upc.Codega.model.entity.Order;
+
 import pe.edu.upc.Codega.model.entity.Seller;
 import pe.edu.upc.Codega.model.repository.CategoriesRepository;
 import pe.edu.upc.Codega.model.repository.ListClothingRepository;

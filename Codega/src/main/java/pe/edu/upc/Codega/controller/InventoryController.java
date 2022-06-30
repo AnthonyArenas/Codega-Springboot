@@ -17,6 +17,7 @@ import pe.edu.upc.Codega.business.crud.ClothingService;
 import pe.edu.upc.Codega.business.crud.ListClothingService;
 import pe.edu.upc.Codega.model.entity.Clothing;
 import pe.edu.upc.Codega.model.entity.ListClothing;
+import pe.edu.upc.Codega.utils.UserAuthentication;
 
 
 @Controller
@@ -29,6 +30,9 @@ public class InventoryController {
 	
 	@Autowired
 	private ListClothingService listClothingService; 
+	
+	@Autowired
+	private UserAuthentication userAuthentication;
 
 	@GetMapping("{id}/list-clothing")
 	public String listClothes(Model model, @PathVariable("id") Integer id) {

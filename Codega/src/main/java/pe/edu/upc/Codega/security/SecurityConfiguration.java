@@ -42,7 +42,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 		// Aqui realiza la configuración de los permisos
 				.antMatchers("/").permitAll()
-				.antMatchers("/clients/**").hasAnyAuthority("ROLE_CLIENT", "ROLE_ADMINISTRATOR")
+				
+				.antMatchers("/sales/**").hasAnyAuthority("ROLE_SELLER")
+				.antMatchers("/inventory").hasAnyAuthority("ROLE_SELLER")
+				.antMatchers("/inventory/**/list-clothing").hasAnyAuthority("ROLE_ADMINISTRATOR","ROLE_CLIENT","ROLE_SELLER")
+				.antMatchers("/orders/**").hasAnyAuthority("ROLE_CLIENT")
+				.antMatchers("/listClothing/**").hasAnyAuthority("ROLE_SELLER")
 			.and()
 				.formLogin();
 	}

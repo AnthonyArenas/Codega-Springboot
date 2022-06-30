@@ -3,7 +3,7 @@
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="layout/Base2 :: frag-head">
 <meta charset="ISO-8859-1">
-<title>Detalles del Cliente</title>
+<title>Detalles del Vendedor</title>
 </head>
 <body>
 
@@ -12,45 +12,35 @@
 
 		<section>
 
-			<nav aria-label="breadcrumb" class="margin-20">
-				<ol class="breadcrumb">
-					<li sec:authorize="hasRole('ROLE_ADMINISTRATOR')"
-						class="breadcrumb-item"><a href="#">Inicio</a></li>
-					<li sec:authorize="hasRole('ROLE_ADMINISTRATOR')"
-						class="breadcrumb-item"><a th:href="@{/clients}">Clientes</a></li>
-					<li class="breadcrumb-item active" aria-current="page">Datos
-						Personales</li>
-				</ol>
-			</nav>
-
+			
 			<div class="card text-center margin-20">
-				<div class="card-header">Datos Personales del Cliente</div>
+				<div class="card-header">Datos Personales del Vendedor</div>
 				<div class="card-body" style="text-align: left;">
 
-					<form th:action="@{'/clients/' + ${client.id} + '/update'}" th:object="${client}"
+					<form th:action="@{'/sellers/' + ${seller.id} + '/update'}" th:object="${seller}"
 						method="post" class="row g-3 needs-validation" novalidate>
 						<div class="col-md-6">
 							<label for="lastName" class="form-label">Apellido</label> <input
-								type="text" class="form-control" th:field="*{lastname}" required>
+								type="text" class="form-control" th:field="*{lastName}" required>
 							<div class="valid-feedback">Looks good!</div>
 						</div>
 						<div class="col-md-6">
 							<label for="firstName" class="form-label">Nombre</label> <input
-								type="text" class="form-control" th:field="*{firstname}"
+								type="text" class="form-control" th:field="*{firstName}"
 								required>
 							<div class="valid-feedback">Looks good!</div>
 						</div>
 
 						<div class="col-md-4">
-							<label for="cellphone" class="form-label">Celular</label> <input
+							<label for="cellphone" class="form-label">Cellphone</label> <input
 								type="text" class="form-control" th:field="*{cellphone}"
 								required>
 							<div class="valid-feedback">Looks good!</div>
 						</div>
 
 						<div class="col-md-7">
-							<label for="direction" class="form-label">Direccion</label> <input
-								type="text" class="form-control" th:field="*{direction}"
+							<label for="email" class="form-label">Email</label> <input
+								type="text" class="form-control" th:field="*{email}"
 								required>
 							<div class="valid-feedback">Looks good!</div>
 						</div>
@@ -77,11 +67,7 @@
 				
 			</div>
 		</section>
-		<p align="center">
-			<a sec:authorize="hasRole('ROLE_ADMINISTRATOR')"
-				class="btn btn-danger" th:href="@{/clients}" role="button">Regresar
-				a Lista de Clientes</a>
-		</p>
+	
 	</main>
 	<footer th:replace="layout/Base2 :: frag-footer"></footer>
 

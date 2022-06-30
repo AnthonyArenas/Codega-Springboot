@@ -13,33 +13,15 @@
   
 	
   
-	<div class="card margin-20">
+	<div class="card margin-20" style="background-color: rgb(153, 200, 251)">
 	  <div class="card-header text-center">
 	    Sales
 	  </div>
 	  <div class="card-body">
 	  
 	  
-	  	<div th:each = "sale : ${sales}" class="col-sm-3 margin-b-10">
-		    <div class="card">
-		      <div class="card-body"> 
-		          
-   
-		        <p class="text-center" th:each = "orderDetail : ${sale.orderDetails}">
-		        	El total a pagar es de <span th:text="${orderDetail.total}"></span> soles
-		        </p>  
-		        
-		        
-   
-		      </div>
-		    </div>
-		  </div>
 	  
-	  
-	  
-	  
-	  
-	  
+	
 	  
 	 	<div class="row">
 		  <div th:each="sale : ${sales}" class="col-sm-3 margin-b-10">
@@ -50,11 +32,19 @@
 		        </p>  
 		        
 		        <p class="text-start">
-		        	TOTAL A PAGAR <span th:text="${sale.orderDetail.total}"></span>,
-		        	PRODUCTO <span th:text="${sale.orderDetail.clothing.model}"></span>,
-		        	NOMBRE VENDEDOR <span th:text="${sale.orderDetail.clothing.list_clothing.seller.firstName}"></span>,
-		        	
-		        	
+		        	La ganancia total es <span th:text="${sale.orderDetail.total}"></span>        	
+		        </p> 
+		        <p class="text-start">
+		        	El modelo del la prenda es <span th:text="${sale.orderDetail.clothing.model}"></span>
+        	
+		        </p> 
+		        <p class="text-start">	
+		        	Nombre del cliente <span th:text="${sale.orderDetail.order.client.firstname}"></span>
+   	
+		        </p> 
+		        <p class="text-start">	
+		        	Numero de la targeta del cliente <span th:text="${sale.orderDetail.order.card}"></span>
+   	
 		        </p> 
 		        
 		        

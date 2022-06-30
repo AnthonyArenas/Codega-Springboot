@@ -7,29 +7,46 @@
 <body>
 
 <header th:insert="layout/layout :: frag-header"></header>
-<main>
+<main style="background-color: rgb(153, 200, 251)">
 	
-  <section class="container py-4">
-  	<div class="p-5 mb-4 bg-light rounded-3" >
+  <section class="container py-4 " >
+  	<div class="p-5 mb-4 bg-light rounded-3 "  >
       <div class="container-fluid py-5" style="background-color: rgb(192, 211, 118);">
         <h1 class="display-5 fw-bold"><i class="fas fa-chalkboard-teacher"></i> Profile</h1>
         
         <p class="col-md-8 fs-4">Username: <span sec:authentication="name">Username</span></p>
-        <p class="col-md-8 fs-4">Roles: <span sec:authentication="principal.authorities">[ROLE_CLIENT, ROLE_SELLER]</span> </p>
+        <div sec:authorize="hasAnyRole('ROLE_SELLER','ROLE_CLIENT')">
         <p class="col-md-8 fs-4">Segment: <span th:text="${segment}">Segment</span></p>
-        
-        <div sec:authorize="hasRole('ROLE_SELLER')">
-        <p class="col-md-8 fs-4" > Id: <span th:text="${seller.id}"></span> </p>
-        <p class="col-md-8 fs-4" > Nombres: <span th:text="${seller.firstName + ' ' + seller.lastName}"></span> </p>
         </div>
+ 
+        <div sec:authorize="hasRole('ROLE_SELLER')">
+        <p class="col-md-8 fs-4" > Nombres: <span th:text="${seller.firstName + ' ' + seller.lastName}"></span> </p>
+        <p class="col-md-8 fs-4" > Email: <span th:text="${seller.email}"></span> </p>
+        <p class="col-md-8 fs-4" > Numero de celular: <span th:text="${seller.cellphone}"></span> </p>
+        
+         <div class="col-12" style="text-align: Center">	    
+		    <a class="btn btn-warning" th:href="@{'/sellers/' + ${seller.id} + '/edit'}" role="button">Editar Perfil</a>
+		  </div>
+          
+        </div>
+        
         <p sec:authorize="hasRole('ROLE_CLIENT')" class="col-md-8 fs-4" >
-        	Nombres: <span th:text="${client.firstname + ' ' + client.lastname}"></span> 
+        	Nombres: <span th:text="${client.firstname + ' ' + client.lastname}"></span>     	 
+        </p>
+        <p sec:authorize="hasRole('ROLE_CLIENT')" class="col-md-8 fs-4" >
+        	Celular: <span th:text="${client.cellphone}"></span>  	 
+        </p>
+        <p sec:authorize="hasRole('ROLE_CLIENT')" class="col-md-8 fs-4" >
+        	Direccion: <span th:text="${client.direction}"></span>	 
+        </p>
+        <p sec:authorize="hasRole('ROLE_CLIENT')" class="col-md-8 fs-4" >
+        	Ciudad: <span th:text="${client.city}"></span>	 
         </p>
         
-        <div class="col-12" style="text-align: Center">
-		    
-		    <a class="btn btn-warning" th:href="@{/orders}" role="button">Editar Perfil</a>
+        <div class="col-12" style="text-align: Center" sec:authorize="hasRole('ROLE_CLIENT')">	    
+		    <a class="btn btn-warning" th:href="@{'/clients/' + ${client.id} + '/edit'}" role="button">Editar Perfil</a>
 		  </div>
+		 
         
   
       </div>
