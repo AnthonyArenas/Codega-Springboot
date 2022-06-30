@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org " xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="layout/layout :: frag-head">
 	<meta charset="ISO-8859-1">
 	<title>Categories</title>
@@ -17,7 +17,7 @@
 	    <a class="btn btn-primary" th:href="@{/categoriess/new}" role="button"> <i class="fas fa-plus"></i> New </a>
 	  </div>
 			<div class="row row-cols-1 row-cols-md-4 g-4" style="width: 80%">
-				<div th:each="categories : ${categoriess}">
+				 <div th:each="categories : ${categoriess}">
 					<div class="col">
 						<div class="card">
 							<img
@@ -25,9 +25,11 @@
 								class="card-img-top img-responsive" alt="...">
 							<div class="card-body">
 								<h5 class="card-title" th:text="${categories.name}"></h5>
-								<h5 class="card-title" th:text="${categories.trendRanking}"></h5>
-						
-		      					<a class="btn btn-danger" th:href="@{'/inventory/' + ${categories.id} + '/list-clothing'}" role="button"> See ListClothing </a>
+									      							            
+								<a class="btn btn-warning" th:href="@{'/categoriess/' + ${categories.id} + '/edit'}" role="button" sec:authorize="hasRole('ROLE_ADMINISTRATOR')"> <i class="fas fa-edit"></i> </a>
+		      					<a class="btn btn-danger" th:href="@{'/categoriess/' + ${categories.id} + '/del'}" role="button" sec:authorize="hasRole('ROLE_ADMINISTRATOR')" > <i class="fas fa-trash-alt"></i> </a>
+		      					<a class="btn btn-danger" th:href="@{'/inventory/' + ${categories.id} + '/list-clothing'}" role="button" sec:authorize="hasRole('ROLE_ADMINISTRATOR')"> See ListClothing </a>
+		      					<a class="btn btn-danger" th:href="@{'/categoriess/' + ${categories.id} + '/view'}" role="button" sec:authorize="hasRole('ROLE_CLIENT')"> See Clothing </a>
 							</div>
 						</div>
 					</div>

@@ -20,7 +20,7 @@ import pe.edu.upc.Codega.model.repository.OrderRepository;
 public class OrderDetailBsServiceImpl implements OrderDetailBsService{
 
 	@Autowired
-	private OrderDetailRepository orderDetailReppsitory;
+	private OrderDetailRepository orderDetailRepository;
 	
 	@Autowired
 	private OrderRepository orderRepository;
@@ -28,7 +28,7 @@ public class OrderDetailBsServiceImpl implements OrderDetailBsService{
 	@Autowired
 	private ClientRepository clientRepository;
 	
-	@Override
+	/*@Override
 	public List<OrderDetail> findByOrder(Integer id) throws Exception {
 		if(orderRepository.existsById(id)) {
 			Optional<Order> optional = orderRepository.findById(id);
@@ -36,15 +36,15 @@ public class OrderDetailBsServiceImpl implements OrderDetailBsService{
 		}else {
 			return new ArrayList<OrderDetail>();
 		}
-	}
+	}*/
 
 	/*@Override
-	public List<Client> findByClient(Integer id) throws Exception {
+	public List<OrderDetail> findByClient(Integer id) throws Exception {
 		if(clientRepository.existsById(id)) {
 			Optional<Client> optional = clientRepository.findById(id);
-			return orderDetailReppsitory.findByClient(optional.get());
+			return orderDetailRepository.findByClient(optional.get());
 		}else {
-			return new ArrayList<Client>();
+			return new ArrayList<OrderDetail>();
 		}
 		
 	}*/

@@ -13,7 +13,7 @@
 
 
   	<section style="display: flex; justify-content: center">
-  		<div class="card-footer text-muted">
+  		<div class="card-footer text-muted" sec:authorize="hasRole('ROLE_ADMINISTRATOR')">
 	    <a class="btn btn-primary" th:href="@{/categoriess/new}" role="button"> <i class="fas fa-plus"></i> New </a>
 	  </div>
 			<div class="row row-cols-1 row-cols-md-4 g-4" style="width: 80%">
@@ -29,7 +29,7 @@
 								<a class="btn btn-warning" th:href="@{'/categoriess/' + ${categories.id} + '/edit'}" role="button" sec:authorize="hasRole('ROLE_ADMINISTRATOR')"> <i class="fas fa-edit"></i> </a>
 		      					<a class="btn btn-danger" th:href="@{'/categoriess/' + ${categories.id} + '/del'}" role="button" sec:authorize="hasRole('ROLE_ADMINISTRATOR')" > <i class="fas fa-trash-alt"></i> </a>
 		      					<a class="btn btn-danger" th:href="@{'/inventory/' + ${categories.id} + '/list-clothing'}" role="button" sec:authorize="hasRole('ROLE_ADMINISTRATOR')"> See ListClothing </a>
-		      					<a class="btn btn-danger" th:href="@{'/listClothing'}" role="button" sec:authorize="hasRole('ROLE_CLIENT')"> See Clothing </a>
+		      					<a class="btn btn-danger" th:href="@{'/categoriess/' + ${categories.id} + '/view'}" role="button" sec:authorize="hasRole('ROLE_CLIENT')"> See Clothing </a>
 							</div>
 						</div>
 					</div>

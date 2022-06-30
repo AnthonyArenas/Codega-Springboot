@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import pe.edu.upc.Codega.business.crud.CategoriesService;
+import pe.edu.upc.Codega.business.crud.ListClothingService;
 import pe.edu.upc.Codega.model.entity.Categories;
+import pe.edu.upc.Codega.model.entity.ListClothing;
+import pe.edu.upc.Codega.model.entity.OrderDetail;
 
 
 @Controller
@@ -23,6 +26,9 @@ import pe.edu.upc.Codega.model.entity.Categories;
 public class CategoriesController {
 	
 	@Autowired CategoriesService categoriesService;
+	
+	@Autowired
+	private ListClothingService listClothingService;
 	
 	@GetMapping
 	public String listProducts(Model model) {
@@ -112,25 +118,23 @@ public class CategoriesController {
 		return "redirect:/categoriess";
 	}
 	
-	/*@GetMapping("{id}/view")
-	public String viewCategories(Model model, @PathVariable("id") Integer id) {
-		try {
-			if(categoriesService.existsById(id)) {
-				Optional<Categories> optional = categoriesService.findById(id);
-				model.addAttribute("categories", optional.get());
-			}
-			else {
-				return "redirect:/categoriess";
-			}
+	@GetMapping("{idCategories}/view")
+	public String viewCategories(Model model, @PathVariable("idCategories") Integer id) {
+		try {		
+				List<ListClothing> listClothing= listClothingService.findByCategorie(id);
+				System.out.print("categorias" + listClothing);
+				model.addAttribute("listClothing", listClothing);
+				return "listClothing/list-listClothing";
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		return "categoriess/view-categoriess";
-	}*/
+		return "listClothing/list-listClothing";
+	}
 	
-	@GetMapping("view")
+	/*@GetMapping("view")
 	public String viewCategories(Model model) {
 		try {
 			List<Categories> categoriess = categoriesService.getAll();
@@ -141,6 +145,6 @@ public class CategoriesController {
 			e.printStackTrace();
 		}
 		return "categoriess/view-categoriess";
-	}
+	}*/
 	
 }

@@ -5,12 +5,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "order_details")
+@Table(name = "order_details", indexes = {@Index(columnList = "order_id", name = "order_details_index_order_id")})
 public class OrderDetail {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +28,7 @@ public class OrderDetail {
 	@ManyToOne
 	@JoinColumn(name = "order_id")
 	private Order order;
+
 
 	public Integer getId() {
 		return id;
