@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import pe.edu.upc.Codega.business.crud.ClientService;
+import pe.edu.upc.Codega.business.crud.SellerService;
 import pe.edu.upc.Codega.model.entity.Client;
+import pe.edu.upc.Codega.model.entity.Seller;
 
 @Controller
 @RequestMapping("/clients")
@@ -27,6 +29,9 @@ public class ClientController {
 	@Autowired
 	private ClientService clientService;
 	
+	@Autowired
+	private SellerService sellerService;
+	
 
 	@GetMapping
 	public String listClients(Model model) {
@@ -34,6 +39,8 @@ public class ClientController {
 		try {
 			List<Client> clients = clientService.getAll();
 			model.addAttribute("clients", clients);
+			List<Seller> sellers = sellerService.getAll();
+			model.addAttribute("sellers", sellers);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

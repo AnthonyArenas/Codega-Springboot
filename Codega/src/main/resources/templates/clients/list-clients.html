@@ -11,43 +11,52 @@
 
 		<section>
 			<div class="card text-center">
-				<div class="card-header">Lista de Clientes</div>
+				<div class="card-header">List Users</div>
 				<div class="card-body">
-
-					<table class="table table-striped">
-						<thead>
-							<tr>
-								<th scope="col">Id</th>
-								<th scope="col">Apellido</th>
-								<th scope="col">Nombre</th>
-								<th scope="col">Celular</th>
-								<th scope="col">Direccion</th>
-								<th scope="col">Acciones</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr th:each="client : ${clients}">
-								<th scope="row" th:text="${client.id}"></th>
-								<td th:text="${client.lastname}"></td>
-								<td th:text="${client.firstname}"></td>
-								<td th:text="${client.cellphone}"></td>
-								<td th:text="${client.direction}"></td>
-								<td><a class="btn btn-success"
-									th:href="@{'/clients/godetail/'+${client.id}}" role="button">
-										<i class="fas fa-user"></i>
-								</a> <a class="btn btn-danger"
-									th:href="@{/clients/delete?id=}+${client.id}" role="button">
-										<i class="fas fa-user-times"></i>
-								</a></td>
-							</tr>
-						</tbody>
-					</table>
-
+				
+				<div class="row">
+					  <div th:each = "seller : ${sellers}" class="col-sm-3 margin-b-10">
+					    <div class="card">
+					      <div class="card-body"> 
+					       <p class="text-center">
+					        	Nombre Completo: <span th:text="${seller.firstName + ' ' + seller.lastName}"></span>	 
+					        </p>   
+					        <p class="text-center">
+					        	Email: <span th:text="${seller.email}"></span>
+					        </p>
+					         <p class="text-center">
+					        	Segment: Seller 
+					        </p>            
+			   
+					      </div>
+					    </div>
+					  </div>
+				    
+				  </div>
+				  
+				  <div class="row">
+					  <div th:each = "client : ${clients}" class="col-sm-3 margin-b-10">
+					    <div class="card">
+					      <div class="card-body"> 
+					       <p class="text-center">
+					        	Nombre Completo: <span th:text="${client.firstname + ' ' + client.lastname}"></span>	 
+					        </p>   
+					        <p class="text-center">
+					        	Direction: <span th:text="${client.direction}"></span>
+					        </p>
+					         <p class="text-center">
+					        	Segment: Client 
+					        </p>            
+			   
+					      </div>
+					    </div>
+					  </div>
+				    
+				  </div>
+	
 				</div>
 				<div class="card-footer text-muted">
-					<a class="btn btn-primary" th:href="@{/clients/new}" role="button">
-						<i class="fas fa-plus"></i> Nuevo Cliente
-					</a>
+					
 				</div>
 			</div>
 		</section>

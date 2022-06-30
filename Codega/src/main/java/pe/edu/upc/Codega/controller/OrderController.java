@@ -1,6 +1,7 @@
 package pe.edu.upc.Codega.controller;
 
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +54,24 @@ public class OrderController {
 	
 	public Integer idNew;
 	
-
+	
+	
+	@GetMapping("/list")
+	public String listOrder(Model model) {
+		if(userAuthentication.isAuthenticated()) {
+			Integer id = userAuthentication.getIdSegment();
+			try {				
+				List<Order> orders= orderService.findByClient(id);
+				model.addAttribute("orders", orders);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}return "orders/list-orders";
+		}
+		return "orders/list-orders";
+		
+		
+	}
 	
 	@GetMapping("{id}/new")
 	public String newOrder(Model model, @PathVariable("id") Integer id) {
@@ -106,7 +124,7 @@ public class OrderController {
 				}
 		}
 		
-		return "redirect:/orderDetails";
+		return "redirect:/orders/list";
 	}
 	
 	

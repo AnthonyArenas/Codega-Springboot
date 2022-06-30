@@ -22,7 +22,7 @@ public class ListClothing {
 	public ListClothing() {
 		//seller = new Seller();
 		//users = new Users();
-		categories = new Categories();
+		//categories = new Categories();
 		clothing = new ArrayList<>();
 	}
 	
@@ -34,21 +34,8 @@ public class ListClothing {
 		this.id = id;
 	}
 
-	public List<Clothing> getClothing() {
-		return clothing;
-	}
 
-	public void setClothing(List<Clothing> clothing) {
-		this.clothing = clothing;
-	}
 
-	public Categories getCategories() {
-		return categories;
-	}
-
-	public void setCategories(Categories categories) {
-		this.categories = categories;
-	}
 
 	/*public Users getUsers() {
 		return users;
@@ -102,8 +89,8 @@ public class ListClothing {
 	private List<Clothing> clothing ;
 	
 	@ManyToOne
-	@JoinColumn(name = "categories_id", nullable=true)
-	private Categories categories;	// career_id
+	@JoinColumn(name = "categorie_id")
+	private Categories categorie;	// career_id
 	
 	/*@ManyToOne
 	@JoinColumn(name = "users_id")
@@ -123,7 +110,23 @@ public class ListClothing {
 		this.seller = seller;
 	}
 
+	
 
+	public List<Clothing> getClothing() {
+		return clothing;
+	}
+
+	public void setClothing(List<Clothing> clothing) {
+		this.clothing = clothing;
+	}
+
+	public Categories getCategorie() {
+		return categorie;
+	}
+
+	public void setCategorie(Categories categorie) {
+		this.categorie = categorie;
+	}
 	
 
 	/*public Seller getSeller() {
@@ -133,6 +136,7 @@ public class ListClothing {
 	public void setSeller(Seller seller) {
 		this.seller = seller;
 	}*/
+	
 	
 	
 
