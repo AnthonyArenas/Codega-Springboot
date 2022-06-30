@@ -44,10 +44,10 @@
 		  </div>
 		  
 		  <div class="col-md-3">
-		    <label for="career" class="form-label">Category</label>
-		    <select class="form-select" th:field="*{categories}" required>
+		    <label for="categorie" class="form-label">Category</label>
+		    <select class="form-select" th:field="*{categorie}" required>
 		      <option selected disabled value="">Choose...</option>
-		      <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}">...</option>
+		      <option th:each="categorie : ${categories}" th:value="${categorie.id}" th:text="${categorie.name}">...</option>
 		    </select>
 		    <div class="invalid-feedback">
 		      Please select a valid state.
